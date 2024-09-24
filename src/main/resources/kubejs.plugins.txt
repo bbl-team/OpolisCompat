@@ -1,0 +1,1 @@
+com.benbenlaw.opoliscompat.kubejs.KubeJSOpolisPlugin

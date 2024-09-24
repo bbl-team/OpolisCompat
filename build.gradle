@@ -1,0 +1,205 @@
+import net.darkhax.curseforgegradle.TaskPublishCurseForge
+
+plugins {
+    id 'java-library'
+    id 'eclipse'
+    id 'idea'
+    id 'maven-publish'
+    id 'net.neoforged.gradle.userdev' version '7.0.142'
+    id 'net.darkhax.curseforgegradle' version '1.1.24'
+    id "com.modrinth.minotaur" version "2.+"
+}
+
+version = "${minecraft_version}-${mod_version}"
+group = mod_group_id
+
+repositories {
+    mavenLocal()
+
+    maven {
+        name = "Curse Maven"
+        url = uri("https://cursemaven.com")
+        content {
+            includeGroup("curse.maven")
+        }
+    }
+}
+
+base {
+    archivesName = mod_id
+}
+
+java.toolchain.languageVersion = JavaLanguageVersion.of(21)
+
+runs {
+    configureEach {
+        systemProperty 'forge.logging.markers', 'REGISTRIES'
+        systemProperty 'forge.logging.console.level', 'debug'
+        modSource project.sourceSets.main
+    }
+
+    client {
+        systemProperty 'forge.enabledGameTestNamespaces', project.mod_id
+    }
+
+    server {
+        systemProperty 'forge.enabledGameTestNamespaces', project.mod_id
+        programArgument '--nogui'
+    }
+    gameTestServer {
+        systemProperty 'forge.enabledGameTestNamespaces', project.mod_id
+    }
+
+    data {
+        programArguments.addAll '--mod', project.mod_id, '--all', '--output', file('src/generated/resources/').getAbsolutePath(), '--existing', file('src/main/resources/').getAbsolutePath()
+    }
+}
+
+sourceSets.main.resources { srcDir 'src/generated/resources' }
+
+configurations {
+    runtimeClasspath.extendsFrom localRuntime
+}
+
+dependencies {
+
+    implementation "net.neoforged:neoforge:${neo_version}"
+
+    //Opolis Utilities
+
+    compileOnly "curse.maven:opolis-utilities-649644:5728870"
+    runtimeOnly "curse.maven:opolis-utilities-649644:5728870"
+
+    //JEI
+    compileOnly "curse.maven:jei-238222:5606861"
+    runtimeOnly "curse.maven:jei-238222:5606861"
+
+    //KubeJS
+
+    compileOnly "curse.maven:kubejs-238086:5631423"
+    runtimeOnly "curse.maven:kubejs-238086:5631423"
+
+    //Rhino
+
+    compileOnly "curse.maven:rhino-416294:5650008"
+    runtimeOnly "curse.maven:rhino-416294:5650008"
+
+    //Caveopolis
+
+    compileOnly "curse.maven:caveopolis-mod-639186:5644033"
+    runtimeOnly "curse.maven:caveopolis-mod-639186:5644033"
+
+    //Strainers
+
+    compileOnly "curse.maven:opolis-strainers-882351:5655322"
+    runtimeOnly "curse.maven:opolis-strainers-882351:5655322"
+
+    //BBL Casting
+
+    compileOnly "curse.maven:bbl-casting-1052163:5735020"
+    runtimeOnly "curse.maven:bbl-casting-1052163:5735020"
+
+    //Sawmill
+
+    compileOnly "curse.maven:sawmill-964817:5610654"
+    runtimeOnly "curse.maven:sawmill-964817:5610654"
+
+    //selene (Moonlight
+
+    compileOnly "curse.maven:selene-499980:5649619"
+    runtimeOnly "curse.maven:selene-499980:5649619"
+
+    //EMI
+
+    compileOnly "curse.maven:emi-580555:5619579"
+    //runtimeOnly "curse.maven:emi-580555:5619579"
+
+}
+
+tasks.withType(ProcessResources).configureEach {
+    var replaceProperties = [
+            minecraft_version      : minecraft_version,
+            minecraft_version_range: minecraft_version_range,
+            neo_version            : neo_version,
+            neo_version_range      : neo_version_range,
+            loader_version_range   : loader_version_range,
+            mod_id                 : mod_id,
+            mod_name               : mod_name,
+            mod_license            : mod_license,
+            mod_version            : mod_version,
+            mod_authors            : mod_authors,
+            mod_description        : mod_description
+    ]
+    inputs.properties replaceProperties
+
+    filesMatching(['META-INF/neoforge.mods.toml']) {
+        expand replaceProperties
+    }
+}
+
+// Example configuration to allow publishing using the maven-publish plugin
+publishing {
+    publications {
+        register('mavenJava', MavenPublication) {
+            from components.java
+        }
+    }
+    repositories {
+
+        maven {
+            url "https://cursemaven.com"
+            content {
+                includeGroup "curse.maven"
+            }
+        }
+
+        maven {
+            url "file://${project.projectDir}/repo"
+        }
+    }
+}
+
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8' // Use the UTF-8 charset for Java compilation
+}
+
+// IDEA no longer automatically downloads sources/javadoc jars for dependencies, so we need to explicitly enable the behavior.
+idea {
+    module {
+        downloadSources = true
+        downloadJavadoc = true
+    }
+}
+
+tasks.register('publishCurseForge', TaskPublishCurseForge) {
+    group "modpublishing"
+
+    apiToken = System.getenv("curseforge_token").toString()
+
+    def projectId = 1052840
+    def mainFile = upload(projectId, jar)
+
+    mainFile.changelog = changelog
+    mainFile.addRequirement("opolis-utilities")
+    mainFile.releaseType = "release"
+    mainFile.gameVersions.addAll("1.21", "1.21.1")
+}
+
+tasks.getByName("modrinth").setGroup("modpublishing")
+
+
+modrinth {
+    token = System.getenv("modrinth_token").toString()
+    projectId = "HFF844hg"
+    versionType = "release"
+    versionName = "opolis-compat-" + "$minecraft_version" + "-" + "$mod_version"
+    uploadFile = jar // With Loom, this MUST be set to `remapJar` instead of `jar`!
+
+    gameVersions.addAll("1.21", "1.21.1")
+
+    loaders = ["neoforge"]
+    changelog = project.changelog
+    dependencies {
+        required.project "opolis-utilities"
+    }
+}

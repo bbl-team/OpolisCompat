@@ -1,0 +1,30 @@
+Changelog Opolis Compat
+
+//****UPDATE VERSION NUMBER****//
+
+4.0.2
+
+Fixed casting new solidifier recipe
+Fixed version names
+
+4.0.1
+
+Updated to casting 1.12 and changed fuel recipe to use the new casting recipe
+4.0.0
+
+New name Opolis Compat
+Will contain additional compat between opolis mods and other mods
+Added caveopolis and sawmill compat
+
+Added
+
+2.0.1
+
+Updated to strainers sized ingredients
+
+2.0.0
+
+Updated to latest version of mods and neoforge
+Added castings new fuel recipe
+Added cloche recipe support for opolis utilities, includes support for additional outputs as well
+Fixer mixer recipe in casting

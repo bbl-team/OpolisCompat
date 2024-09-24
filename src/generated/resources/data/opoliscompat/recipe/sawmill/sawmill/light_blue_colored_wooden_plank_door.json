@@ -1,0 +1,20 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "caveopolis"
+    },
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "sawmill"
+    }
+  ],
+  "type": "sawmill:woodcutting",
+  "ingredient": {
+    "tag": "caveopolis:light_blue_colored_logs"
+  },
+  "result": {
+    "count": 2,
+    "id": "caveopolis:light_blue_colored_wooden_plank_door"
+  }
+}
