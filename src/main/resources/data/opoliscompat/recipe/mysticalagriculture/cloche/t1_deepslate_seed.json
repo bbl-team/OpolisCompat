@@ -1,0 +1,34 @@
+{
+    "type": "opolisutilities:cloche",
+    "neoforge:conditions": [
+      {
+        "type": "neoforge:mod_loaded",
+        "modid": "opolisutilities"
+      },
+      {
+        "type": "neoforge:mod_loaded",
+        "modid": "mysticalagriculture"
+      }
+    ],
+    "catalyst": [],
+    "chanceOutput1": {
+      "count": 1,
+      "id": "mysticalagriculture:deepslate_seeds"
+    },
+    "chanceOutputChance1": 0.15,
+    "chanceOutput2": {
+      "count": 1,
+      "id": "mysticalagriculture:mystical_fertilizer"
+    },
+    "durationModifier": 3.0,
+    "mainOutput": {
+      "count": 1,
+      "id": "mysticalagriculture:deepslate_essence"
+    },
+    "seed": {
+      "item": "mysticalagriculture:deepslate_seeds"
+    },
+    "soil": {
+      "item": "mysticalagriculture:inferium_farmland"
+    }
+  }

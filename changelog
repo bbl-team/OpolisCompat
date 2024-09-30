@@ -2,6 +2,11 @@ Changelog Opolis Compat
 
 //****UPDATE VERSION NUMBER****//
 
+4.0.3
+
+Updated to opolis utilities 4.10.4
+Cloche now supports mystical seeds
+
 4.0.2
 
 Fixed casting new solidifier recipe

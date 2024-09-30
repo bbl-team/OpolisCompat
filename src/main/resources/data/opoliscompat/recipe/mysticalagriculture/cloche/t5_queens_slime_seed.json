@@ -1,0 +1,35 @@
+{
+    "type": "opolisutilities:cloche",
+    "neoforge:conditions": [
+      {
+        "type": "neoforge:mod_loaded",
+        "modid": "opolisutilities"
+      },
+      {
+        "type": "neoforge:mod_loaded",
+        "modid": "mysticalagriculture"
+      }
+    ],
+    "catalyst": [],
+    "chanceOutput1": {
+      "count": 1,
+      "id": "mysticalagriculture:queens_slime_seeds"
+    },
+    "chanceOutputChance1": 0.15,
+    "chanceOutput2": {
+      "count": 1,
+      "id": "mysticalagriculture:mystical_fertilizer"
+    },
+    "chanceOutputChance2": 0.05,
+    "durationModifier": 4.0,
+    "mainOutput": {
+      "count": 1,
+      "id": "mysticalagriculture:queens_slime_essence"
+    },
+    "seed": {
+      "item": "mysticalagriculture:queens_slime_seeds"
+    },
+    "soil": {
+      "item": "mysticalagriculture:supremium_farmland"
+    }
+  }
