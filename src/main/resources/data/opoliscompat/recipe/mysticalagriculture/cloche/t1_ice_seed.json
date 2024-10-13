@@ -20,6 +20,7 @@
       "count": 1,
       "id": "mysticalagriculture:mystical_fertilizer"
     },
+    "chanceOutputChance2": 0.05,
     "durationModifier": 3.0,
     "mainOutput": {
       "count": 1,

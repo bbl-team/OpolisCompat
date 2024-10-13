@@ -2,6 +2,10 @@ Changelog Opolis Compat
 
 //****UPDATE VERSION NUMBER****//
 
+4.0.4
+Fixed some mystical recipes not producing fertilizer
+Added Farmers Delight Compat (onions, tomatoes, rice and cabbage
+
 4.0.3
 
 Updated to opolis utilities 4.10.4
