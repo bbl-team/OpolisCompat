@@ -2,6 +2,11 @@ Changelog Opolis Compat
 
 //****UPDATE VERSION NUMBER****//
 
+4.0.5
+
+Added New Logo
+Added Support for pneumaticcraft fuels as fuels in casting (lubricant (Cooling), diesel, kerosene, gasoline, lpg and oil)
+
 4.0.4
 Fixed some mystical recipes not producing fertilizer
 Added Farmers Delight Compat (onions, tomatoes, rice and cabbage
