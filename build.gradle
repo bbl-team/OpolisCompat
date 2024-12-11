@@ -65,52 +65,43 @@ dependencies {
 
     implementation "net.neoforged:neoforge:${neo_version}"
 
-    //Opolis Utilities
+    //BBL Core
+    compileOnly "curse.maven:bbl-core-1135181:5973478"
+    runtimeOnly "curse.maven:bbl-core-1135181:5973478"
 
-    compileOnly "curse.maven:opolis-utilities-649644:5762187"
-    runtimeOnly "curse.maven:opolis-utilities-649644:5762187"
+    //Caveopolis 5.0.20
+    compileOnly "curse.maven:caveopolis-mod-639186:5982032"
+    runtimeOnly "curse.maven:caveopolis-mod-639186:5982032"
+
+    //BBL Cloche 1.0.3
+    compileOnly "curse.maven:bbl-cloche-1153960:5982032"
+    runtimeOnly "curse.maven:bbl-cloche-1153960:5982032"
 
     //JEI
     compileOnly "curse.maven:jei-238222:5606861"
     runtimeOnly "curse.maven:jei-238222:5606861"
 
     //KubeJS
-
     compileOnly "curse.maven:kubejs-238086:5631423"
     runtimeOnly "curse.maven:kubejs-238086:5631423"
 
     //Rhino
-
     compileOnly "curse.maven:rhino-416294:5650008"
     runtimeOnly "curse.maven:rhino-416294:5650008"
 
-    //Caveopolis
-
-    compileOnly "curse.maven:caveopolis-mod-639186:5644033"
-    runtimeOnly "curse.maven:caveopolis-mod-639186:5644033"
-
-    //Strainers
-
-    compileOnly "curse.maven:opolis-strainers-882351:5655322"
-    runtimeOnly "curse.maven:opolis-strainers-882351:5655322"
-
     //BBL Casting
-
     compileOnly "curse.maven:bbl-casting-1052163:5735020"
     runtimeOnly "curse.maven:bbl-casting-1052163:5735020"
 
     //Sawmill
-
     compileOnly "curse.maven:sawmill-964817:5610654"
     runtimeOnly "curse.maven:sawmill-964817:5610654"
 
-    //selene (Moonlight
-
+    //selene (Moonlight)
     compileOnly "curse.maven:selene-499980:5649619"
     runtimeOnly "curse.maven:selene-499980:5649619"
 
     //EMI
-
     compileOnly "curse.maven:emi-580555:5619579"
     //runtimeOnly "curse.maven:emi-580555:5619579"
 
@@ -180,7 +171,7 @@ tasks.register('publishCurseForge', TaskPublishCurseForge) {
     def mainFile = upload(projectId, jar)
 
     mainFile.changelog = changelog
-    mainFile.addRequirement("opolis-utilities")
+    mainFile.addRequirement("bbl-core")
     mainFile.releaseType = "release"
     mainFile.gameVersions.addAll("1.21", "1.21.1")
 }
@@ -201,5 +192,6 @@ modrinth {
     changelog = project.changelog
     dependencies {
         required.project "opolis-utilities"
+        required.project "bbl-core"
     }
 }
