@@ -5,7 +5,7 @@ plugins {
     id 'eclipse'
     id 'idea'
     id 'maven-publish'
-    id 'net.neoforged.gradle.userdev' version '7.0.142'
+    id 'net.neoforged.gradle.userdev' version '7.0.165'
     id 'net.darkhax.curseforgegradle' version '1.1.24'
     id "com.modrinth.minotaur" version "2.+"
 }
@@ -73,13 +73,17 @@ dependencies {
     compileOnly "curse.maven:caveopolis-mod-639186:5982032"
     runtimeOnly "curse.maven:caveopolis-mod-639186:5982032"
 
-    //BBL Cloche 1.0.3
-    compileOnly "curse.maven:bbl-cloche-1153960:5982032"
-    runtimeOnly "curse.maven:bbl-cloche-1153960:5982032"
+    //BBL Cloche 1.0.7
+    compileOnly "curse.maven:bbl-cloche-1153960:5982452"
+    runtimeOnly "curse.maven:bbl-cloche-1153960:5982452"
+
+    //Opolis Utilities
+    compileOnly "curse.maven:opolis-utilities-649644:5728507"
+    runtimeOnly "curse.maven:opolis-utilities-649644:5728507"
 
     //JEI
-    compileOnly "curse.maven:jei-238222:5606861"
-    runtimeOnly "curse.maven:jei-238222:5606861"
+    compileOnly "curse.maven:jei-238222:5846880"
+    runtimeOnly "curse.maven:jei-238222:5846880"
 
     //KubeJS
     compileOnly "curse.maven:kubejs-238086:5631423"
@@ -183,7 +187,7 @@ modrinth {
     token = System.getenv("modrinth_token").toString()
     projectId = "HFF844hg"
     versionType = "release"
-    versionName = "opolis-compat-" + "$minecraft_version" + "-" + "$mod_version"
+    versionName = "bblcompat-" + "$minecraft_version" + "-" + "$mod_version"
     uploadFile = jar // With Loom, this MUST be set to `remapJar` instead of `jar`!
 
     gameVersions.addAll("1.21", "1.21.1")
@@ -191,7 +195,6 @@ modrinth {
     loaders = ["neoforge"]
     changelog = project.changelog
     dependencies {
-        required.project "opolis-utilities"
         required.project "bbl-core"
     }
 }

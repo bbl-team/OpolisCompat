@@ -1,6 +1,6 @@
 package com.benbenlaw.opoliscompat.datagen;
 
-import com.benbenlaw.opoliscompat.OpolisCompat;
+import com.benbenlaw.opoliscompat.Compat;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.DataGenerator;
 import net.minecraft.data.PackOutput;
@@ -10,7 +10,7 @@ import net.neoforged.neoforge.data.event.GatherDataEvent;
 
 import java.util.concurrent.CompletableFuture;
 
-@EventBusSubscriber(modid = OpolisCompat.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
+@EventBusSubscriber(modid = Compat.MOD_ID, bus = EventBusSubscriber.Bus.MOD)
 
 public class DataGenerators {
 
@@ -21,7 +21,7 @@ public class DataGenerators {
         PackOutput packOutput = generator.getPackOutput();
         CompletableFuture<HolderLookup.Provider> lookupProvider = event.getLookupProvider();
 
-        generator.addProvider(event.includeServer(), new OpolisCompatRecipes(packOutput, event.getLookupProvider()));
+        generator.addProvider(event.includeServer(), new CompatRecipes(packOutput, event.getLookupProvider()));
 
     }
 }

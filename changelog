@@ -2,6 +2,21 @@ Changelog Opolis Compat
 
 //****UPDATE VERSION NUMBER****//
 
+5.0.1
+Fixed Tomato crops recipe
+Fixed Caveopolis Cloche recipes producing "colored" sticks
+Updated Changelog information
+
+5.0.0
+Updated to minecraft 1.21.1
+BBL Core now a dependency
+Opolis Utilities no longer a dependency
+Renamed to BBL Compat
+Removed old caveopolis sprayer recipes and sawmill recipes
+Added Caveopolis Saplings to the cloche
+Added Actually Additions crops to the cloche
+Added Ceilands Saplings to the cloche
+
 4.0.5
 
 Added New Logo

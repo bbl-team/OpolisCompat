@@ -1,6 +1,5 @@
 package com.benbenlaw.opoliscompat.kubejs;
 
-import com.benbenlaw.opoliscompat.kubejs.caveopolis.SprayerRecipeJS;
 import com.benbenlaw.opoliscompat.kubejs.market.MarketRecipeJS;
 import com.benbenlaw.opoliscompat.kubejs.smelting.FuelRecipeJS;
 import com.benbenlaw.opoliscompat.kubejs.smelting.MeltingRecipeJS;
@@ -33,8 +32,6 @@ public class KubeJSOpolisPlugin implements KubeJSPlugin {
         event.register(ResourceLocation.fromNamespaceAndPath("opolisutilities", "summoning_block"), SummoningRecipeJS.SCHEMA);
         event.register(ResourceLocation.fromNamespaceAndPath("opolisutilities", "cloche"), ClocheRecipeJS.SCHEMA);
 
-        //Caveopolis
-        event.register(ResourceLocation.fromNamespaceAndPath("caveopolis", "sprayer"), SprayerRecipeJS.SCHEMA);
 
         //Strainers
         event.register(ResourceLocation.fromNamespaceAndPath("strainers", "strainer"), StrainerRecipeJS.SCHEMA);
