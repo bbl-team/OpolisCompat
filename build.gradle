@@ -97,13 +97,9 @@ dependencies {
     compileOnly "curse.maven:bbl-casting-1052163:5735020"
     runtimeOnly "curse.maven:bbl-casting-1052163:5735020"
 
-    //Sawmill
-    compileOnly "curse.maven:sawmill-964817:5610654"
-    runtimeOnly "curse.maven:sawmill-964817:5610654"
-
-    //selene (Moonlight)
-    compileOnly "curse.maven:selene-499980:5649619"
-    runtimeOnly "curse.maven:selene-499980:5649619"
+    //Immersive Engineering
+    compileOnly "curse.maven:immersive-engineering-231951:5828000"
+    runtimeOnly "curse.maven:immersive-engineering-231951:5828000"
 
     //EMI
     compileOnly "curse.maven:emi-580555:5619579"

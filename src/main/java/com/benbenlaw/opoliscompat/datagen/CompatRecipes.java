@@ -1,5 +1,8 @@
 package com.benbenlaw.opoliscompat.datagen;
 
+import blusunrize.immersiveengineering.api.IETags;
+import blusunrize.immersiveengineering.api.crafting.MultiblockRecipe;
+import blusunrize.immersiveengineering.common.register.IEItems;
 import com.benbenlaw.caveopolis.item.CaveopolisItems;
 import com.benbenlaw.cloche.data.recipe.ClocheRecipeProvider;
 import com.benbenlaw.core.item.CoreDataComponents;
@@ -61,6 +64,10 @@ public class CompatRecipes extends RecipeProvider {
 
         }
 
+
+        //Immersive Metal Press
+
+
     }
 
 
@@ -81,5 +88,6 @@ public class CompatRecipes extends RecipeProvider {
         item.set(CoreDataComponents.LIT, false);
         return item;
     }
+
 
 }
