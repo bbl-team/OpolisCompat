@@ -16,8 +16,7 @@
     {
       "item": {
         "components": {
-          "bblcore:color": "magenta",
-          "bblcore:lit": false
+          "bblcore:color": "magenta"
         },
         "count": 2,
         "id": "caveopolis:colored_log"
@@ -27,8 +26,7 @@
       "chance": 0.2,
       "item": {
         "components": {
-          "bblcore:color": "magenta",
-          "bblcore:lit": false
+          "bblcore:color": "magenta"
         },
         "count": 1,
         "id": "caveopolis:colored_sapling"
@@ -62,8 +60,7 @@
   },
   "shears_result": {
     "components": {
-      "bblcore:color": "magenta",
-      "bblcore:lit": false
+      "bblcore:color": "magenta"
     },
     "count": 2,
     "id": "caveopolis:colored_leaves"

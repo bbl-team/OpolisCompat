@@ -1,5 +1,6 @@
 package com.benbenlaw.opoliscompat.kubejs;
 
+import com.benbenlaw.opoliscompat.kubejs.cloche.ClocheRecipeJS;
 import com.benbenlaw.opoliscompat.kubejs.market.MarketRecipeJS;
 import com.benbenlaw.opoliscompat.kubejs.smelting.FuelRecipeJS;
 import com.benbenlaw.opoliscompat.kubejs.smelting.MeltingRecipeJS;
@@ -17,7 +18,7 @@ import net.minecraft.resources.ResourceLocation;
 
 public class KubeJSOpolisPlugin implements KubeJSPlugin {
 
-    public static EventGroup GROUP = EventGroup.of("OpolisJSEvents");
+    public static EventGroup GROUP = EventGroup.of("OpolisCompatEvents");
 
     @Override
     public void registerRecipeSchemas(RecipeSchemaRegistry event) {
@@ -30,8 +31,6 @@ public class KubeJSOpolisPlugin implements KubeJSPlugin {
         event.register(ResourceLocation.fromNamespaceAndPath("opolisutilities", "soaking_table"), ResourceGenRecipeJS.SCHEMA);
         event.register(ResourceLocation.fromNamespaceAndPath("opolisutilities", "speed_upgrades"), SpeedUpgradesRecipeJS.SCHEMA);
         event.register(ResourceLocation.fromNamespaceAndPath("opolisutilities", "summoning_block"), SummoningRecipeJS.SCHEMA);
-        event.register(ResourceLocation.fromNamespaceAndPath("opolisutilities", "cloche"), ClocheRecipeJS.SCHEMA);
-
 
         //Strainers
         event.register(ResourceLocation.fromNamespaceAndPath("strainers", "strainer"), StrainerRecipeJS.SCHEMA);
@@ -46,6 +45,9 @@ public class KubeJSOpolisPlugin implements KubeJSPlugin {
 
         //Market
         event.register(ResourceLocation.fromNamespaceAndPath("market", "market"), MarketRecipeJS.SCHEMA);
+
+        //Cloche
+        //event.register(ResourceLocation.fromNamespaceAndPath("cloche", "cloche"), ClocheRecipeJS.SCHEMA);
 
 
     }

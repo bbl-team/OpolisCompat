@@ -4,6 +4,7 @@ import blusunrize.immersiveengineering.api.IETags;
 import blusunrize.immersiveengineering.api.crafting.MultiblockRecipe;
 import blusunrize.immersiveengineering.common.register.IEItems;
 import com.benbenlaw.caveopolis.item.CaveopolisItems;
+import com.benbenlaw.cloche.Cloche;
 import com.benbenlaw.cloche.data.recipe.ClocheRecipeProvider;
 import com.benbenlaw.core.item.CoreDataComponents;
 import com.benbenlaw.core.recipe.ChanceResult;
@@ -54,15 +55,25 @@ public class CompatRecipes extends RecipeProvider {
                 "light_gray", "cyan", "purple", "blue", "brown", "green", "red", "black"
         };
 
-        //Caveopolis Trees in Cloche
         for (String color : colors) {
+
             NonNullList<ChanceResult> resultsWithColor = createColoredSaplingResults(color);
 
+            //Saplings in Cloche
             createClocheRecipe(consumer, color, Ingredient.of(CaveopolisItems.COLORED_SAPLING.get()),
                     Ingredient.of(ItemTags.DIRT), null, null, 1200, resultsWithColor,
                     itemWithColor(CaveopolisItems.COLORED_LEAVES.get().getDefaultInstance(), color));
 
+            //Poppy in Cloche
+            createSimpleClocheRecipe(CaveopolisItems.COLORED_POPPY.get().getDefaultInstance(),
+                    Ingredient.of(ItemTags.DIRT), 1200, color, "_poppy", consumer);
+
+            //Dandelion in Cloche
+            createSimpleClocheRecipe(CaveopolisItems.COLORED_DANDELION.get().getDefaultInstance(),
+                    Ingredient.of(ItemTags.DIRT), 1200, color, "_dandelion", consumer);
+
         }
+
 
 
         //Immersive Metal Press
@@ -81,6 +92,20 @@ public class CompatRecipes extends RecipeProvider {
         ClocheRecipeProvider.ClocheRecipeBuilder(saplingColor, soil, catalyst,
                         dimension, duration, results, shearsResultColor)
                 .save(consumer.withConditions(new ModLoadedCondition("caveopolis")).withConditions(new ModLoadedCondition("cloche")), ResourceLocation.fromNamespaceAndPath(Compat.MOD_ID, "cloche/caveopolis/" + color + "_sapling"));
+    }
+    private void createSimpleClocheRecipe(ItemStack seed, Ingredient soil, int duration, String color, String name, RecipeOutput consumer) {
+
+        final Ingredient flowerColor = DataComponentIngredient.of(false, DataComponentPredicate.builder()
+                        .expect(CoreDataComponents.COLOR.get(), color).build(),
+                itemWithColor(new ItemStack(seed.getItem()), color).getItem());
+
+        NonNullList<ChanceResult> SINGLE_ITEM_RESULTS = NonNullList.create();
+        SINGLE_ITEM_RESULTS.add(new ChanceResult(itemWithColor(new ItemStack(seed.getItem()), color), 1.0f));
+
+
+        ClocheRecipeProvider.ClocheRecipeBuilder(flowerColor, soil, null,
+                        null, duration, SINGLE_ITEM_RESULTS, null)
+                .save(consumer.withConditions(new ModLoadedCondition("caveopolis")).withConditions(new ModLoadedCondition("cloche")), ResourceLocation.fromNamespaceAndPath(Compat.MOD_ID, "cloche/caveopolis/" + color + name));
     }
 
     private static ItemStack itemWithColor(ItemStack item, String color) {

@@ -66,16 +66,16 @@ dependencies {
     implementation "net.neoforged:neoforge:${neo_version}"
 
     //BBL Core
-    compileOnly "curse.maven:bbl-core-1135181:5973478"
-    runtimeOnly "curse.maven:bbl-core-1135181:5973478"
+    compileOnly "curse.maven:bbl-core-1135181:6240092"
+    runtimeOnly "curse.maven:bbl-core-1135181:6240092"
 
-    //Caveopolis 5.0.20
-    compileOnly "curse.maven:caveopolis-mod-639186:5982032"
-    runtimeOnly "curse.maven:caveopolis-mod-639186:5982032"
+    //Caveopolis 5.6.2
+    compileOnly "curse.maven:caveopolis-mod-639186:6242679"
+    runtimeOnly "curse.maven:caveopolis-mod-639186:6242679"
 
-    //BBL Cloche 1.0.7
-    compileOnly "curse.maven:bbl-cloche-1153960:5982452"
-    runtimeOnly "curse.maven:bbl-cloche-1153960:5982452"
+    //BBL Cloche 1.1.0
+    compileOnly "curse.maven:bbl-cloche-1153960:6251079"
+    runtimeOnly "curse.maven:bbl-cloche-1153960:6251079"
 
     //Opolis Utilities
     compileOnly "curse.maven:opolis-utilities-649644:5728507"
