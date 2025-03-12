@@ -8,6 +8,7 @@ import com.benbenlaw.cloche.Cloche;
 import com.benbenlaw.cloche.data.recipe.ClocheRecipeProvider;
 import com.benbenlaw.core.item.CoreDataComponents;
 import com.benbenlaw.core.recipe.ChanceResult;
+import com.benbenlaw.core.util.ColorList;
 import com.benbenlaw.opoliscompat.Compat;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
@@ -27,6 +28,9 @@ import net.neoforged.neoforge.common.crafting.DataComponentIngredient;
 
 import java.util.concurrent.CompletableFuture;
 
+import static com.benbenlaw.colors.block.ColorsBlocks.*;
+import static com.benbenlaw.colors.item.ColorsItems.APPLES;
+
 public class CompatRecipes extends RecipeProvider {
 
     public static NonNullList<ChanceResult> createColoredSaplingResults(String color) {
@@ -43,6 +47,20 @@ public class CompatRecipes extends RecipeProvider {
         return coloredSaplingResults;
     }
 
+    public static NonNullList<ChanceResult> createColoredSaplingResultsColors(String color) {
+        NonNullList<ChanceResult> coloredSaplingResultsColors = NonNullList.create();
+
+        coloredSaplingResultsColors.add(new ChanceResult(
+                new ItemStack(LOGS.get(color + "_log"), 2), 1.0f));
+        coloredSaplingResultsColors.add(new ChanceResult(
+                new ItemStack(SAPLINGS.get(color + "_sapling"), 1), 0.2f));
+        coloredSaplingResultsColors.add(new ChanceResult(
+                new ItemStack(APPLES.get(color + "_apple").get(), 1), 0.2f));
+        coloredSaplingResultsColors.add(new ChanceResult(new ItemStack(Items.STICK), 0.1f));
+
+        return coloredSaplingResultsColors;
+    }
+
     public CompatRecipes(PackOutput output, CompletableFuture<HolderLookup.Provider> completableFuture) {
         super(output, completableFuture);
     }
@@ -50,31 +68,50 @@ public class CompatRecipes extends RecipeProvider {
     @Override
     protected void buildRecipes(RecipeOutput consumer) {
 
-        String[] colors = {
-                "white", "orange", "magenta", "light_blue", "yellow", "lime", "pink", "gray",
-                "light_gray", "cyan", "purple", "blue", "brown", "green", "red", "black"
-        };
-
-        for (String color : colors) {
+        for (String color : ColorList.COLORS) {
 
             NonNullList<ChanceResult> resultsWithColor = createColoredSaplingResults(color);
 
-            //Saplings in Cloche
+            //Saplings in Cloche - Caveopolis
             createClocheRecipe(consumer, color, Ingredient.of(CaveopolisItems.COLORED_SAPLING.get()),
                     Ingredient.of(ItemTags.DIRT), null, null, 1200, resultsWithColor,
                     itemWithColor(CaveopolisItems.COLORED_LEAVES.get().getDefaultInstance(), color));
 
-            //Poppy in Cloche
+            //Poppy in Cloche - Caveopolis
             createSimpleClocheRecipe(CaveopolisItems.COLORED_POPPY.get().getDefaultInstance(),
                     Ingredient.of(ItemTags.DIRT), 1200, color, "_poppy", consumer);
 
-            //Dandelion in Cloche
+            //Dandelion in Cloche - Caveopolis
             createSimpleClocheRecipe(CaveopolisItems.COLORED_DANDELION.get().getDefaultInstance(),
                     Ingredient.of(ItemTags.DIRT), 1200, color, "_dandelion", consumer);
 
+            //Saplings in Cloche - Colors
+
+            NonNullList<ChanceResult> resultsColors = createColoredSaplingResultsColors(color);
+
+            ClocheRecipeProvider.ClocheRecipeBuilder(Ingredient.of(SAPLINGS.get(color + "_sapling")), Ingredient.of(ItemTags.DIRT), null,
+                            null, 1200, resultsColors, LEAVES.get(color + "_leaves").toStack())
+                    .save(consumer.withConditions(new ModLoadedCondition("colors")).withConditions(new ModLoadedCondition("cloche")), ResourceLocation.fromNamespaceAndPath(Compat.MOD_ID, "cloche/colors/" + color + "_sapling"));
+
+            //Poppy in Cloche - Colors
+
+            NonNullList<ChanceResult> poppy = NonNullList.create();
+            poppy.add(new ChanceResult(new ItemStack(POPPY.get(color + "_poppy")), 1.0f));
+
+            ClocheRecipeProvider.ClocheRecipeBuilder(Ingredient.of(POPPY.get(color + "_poppy")), Ingredient.of(ItemTags.DIRT), null,
+                            null, 1200, poppy, null)
+                    .save(consumer.withConditions(new ModLoadedCondition("colors")).withConditions(new ModLoadedCondition("cloche")), ResourceLocation.fromNamespaceAndPath(Compat.MOD_ID, "cloche/colors/" + color + "_poppy"));
+
+            //Dandelion in Cloche - Colors
+
+            NonNullList<ChanceResult> dandelion = NonNullList.create();
+            dandelion.add(new ChanceResult(new ItemStack(DANDELION.get(color + "_dandelion")), 1.0f));
+
+            ClocheRecipeProvider.ClocheRecipeBuilder(Ingredient.of(DANDELION.get(color + "_dandelion")), Ingredient.of(ItemTags.DIRT), null,
+                            null, 1200, dandelion, null)
+                    .save(consumer.withConditions(new ModLoadedCondition("colors")).withConditions(new ModLoadedCondition("cloche")), ResourceLocation.fromNamespaceAndPath(Compat.MOD_ID, "cloche/colors/" + color + "_dandelion"));
+
         }
-
-
 
         //Immersive Metal Press
 

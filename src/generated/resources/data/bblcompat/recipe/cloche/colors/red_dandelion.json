@@ -1,0 +1,29 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "colors"
+    },
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "cloche"
+    }
+  ],
+  "type": "cloche:cloche",
+  "catalyst": [],
+  "duration": 1200,
+  "results": [
+    {
+      "item": {
+        "count": 1,
+        "id": "colors:red_dandelion"
+      }
+    }
+  ],
+  "seed": {
+    "item": "colors:red_dandelion"
+  },
+  "soil": {
+    "tag": "minecraft:dirt"
+  }
+}

@@ -66,8 +66,12 @@ dependencies {
     implementation "net.neoforged:neoforge:${neo_version}"
 
     //BBL Core
-    compileOnly "curse.maven:bbl-core-1135181:6240092"
-    runtimeOnly "curse.maven:bbl-core-1135181:6240092"
+    compileOnly "curse.maven:bbl-core-1135181:6295426"
+    runtimeOnly "curse.maven:bbl-core-1135181:6295426"
+
+    //BBL Colors
+    compileOnly "curse.maven:bbl-core-1218206:6295557"
+    runtimeOnly "curse.maven:bbl-core-1218206:6295557"
 
     //Caveopolis 5.6.2
     compileOnly "curse.maven:caveopolis-mod-639186:6242679"

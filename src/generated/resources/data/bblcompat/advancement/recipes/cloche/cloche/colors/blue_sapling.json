@@ -1,0 +1,31 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "colors"
+    },
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "cloche"
+    }
+  ],
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "bblcompat:cloche/colors/blue_sapling"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    }
+  },
+  "requirements": [
+    [
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "bblcompat:cloche/colors/blue_sapling"
+    ]
+  },
+  "sends_telemetry_event": true
+}

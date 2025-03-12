@@ -2,6 +2,11 @@ Changelog Opolis Compat
 
 //****UPDATE VERSION NUMBER****//
 
+5.1.1
+Added BBL Colors
+Added Caveopolis to Colors World Conversion tool, enable in the config to convert caveopolis blocks to colors
+Added BBL Colors saplings and flower support to the cloche
+
 5.1.0
 Update BBL Mods
 Added colored poppy and dandelion to the cloche
