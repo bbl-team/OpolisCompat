@@ -1,0 +1,27 @@
+{
+  "type": "mekanism:pigment_extracting",
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "mekanism"
+    },
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "bblcore"
+    }
+  ],
+  "input": {
+    "type": "neoforge:intersection",
+    "children": [
+      {
+        "tag": "bblcore:tintable/black"
+      }
+    ],
+    "count": 1
+  },
+  "output": {
+    "amount": 64,
+    "id": "mekanism:black"
+  }
+}
+

@@ -2,6 +2,16 @@ Changelog Opolis Compat
 
 //****UPDATE VERSION NUMBER****//
 
+5.1.4
+Added server side only check for caveopolis to colors world conversion
+Added bbl core color tags to mechanism pigment extractor
+
+5.1.3
+Fixed Caveopolis Polished stone not converting
+
+5.1.2
+Fixed height
+
 5.1.1
 Added BBL Colors
 Added Caveopolis to Colors World Conversion tool, enable in the config to convert caveopolis blocks to colors
