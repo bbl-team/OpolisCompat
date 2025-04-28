@@ -27,6 +27,8 @@ import static com.benbenlaw.core.util.ColorList.COLORS;
 @EventBusSubscriber(modid = Compat.MOD_ID)
 public class WorldReplaceEvent {
 
+
+    @Deprecated(since = "5.2.0")
     @SubscribeEvent
     public static void onWorldReplaceEvent(ChunkEvent.Load event) {
 

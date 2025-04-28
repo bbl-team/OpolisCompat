@@ -1,0 +1,45 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "mysticalagradditions"
+    },
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "cloche"
+    }
+  ],
+  "type": "cloche:cloche",
+  "catalyst": {
+    "item": "mysticalagradditions:nether_star_crux"
+  },
+  "duration": 3000,
+  "results": [
+    {
+      "item": {
+        "count": 1,
+        "id": "mysticalagriculture:nether_star_essence"
+      }
+    },
+    {
+      "chance": 0.15,
+      "item": {
+        "count": 1,
+        "id": "mysticalagriculture:nether_star_seeds"
+      }
+    },
+    {
+      "chance": 0.05,
+      "item": {
+        "count": 1,
+        "id": "mysticalagriculture:mystical_fertilizer"
+      }
+    }
+  ],
+  "seed": {
+    "item": "mysticalagriculture:nether_star_seeds"
+  },
+  "soil": {
+    "item": "mysticalagradditions:insanium_farmland"
+  }
+}

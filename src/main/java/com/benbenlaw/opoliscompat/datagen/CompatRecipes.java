@@ -10,6 +10,10 @@ import com.benbenlaw.core.item.CoreDataComponents;
 import com.benbenlaw.core.recipe.ChanceResult;
 import com.benbenlaw.core.util.ColorList;
 import com.benbenlaw.opoliscompat.Compat;
+import com.benbenlaw.opoliscompat.datagen.cloche.CompatResultLists;
+import com.benbenlaw.opoliscompat.datagen.cloche.MysticalResources;
+import com.blakebr0.mysticalagradditions.MysticalAgradditions;
+import com.blakebr0.mysticalagriculture.MysticalAgriculture;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.component.DataComponentPredicate;
@@ -30,6 +34,7 @@ import java.util.concurrent.CompletableFuture;
 
 import static com.benbenlaw.colors.block.ColorsBlocks.*;
 import static com.benbenlaw.colors.item.ColorsItems.APPLES;
+import static com.benbenlaw.opoliscompat.datagen.cloche.CompatResultLists.INFERIUM_FARMLAND;
 
 public class CompatRecipes extends RecipeProvider {
 
@@ -67,6 +72,58 @@ public class CompatRecipes extends RecipeProvider {
 
     @Override
     protected void buildRecipes(RecipeOutput consumer) {
+
+        //Mystical Cloche Recipes
+        for (String type : MysticalResources.TIER_1_SEEDS) {
+            Item seed = BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath(MysticalAgriculture.MOD_ID, type + "_seeds"));
+
+            ClocheRecipeProvider.ClocheRecipeBuilder(Ingredient.of(seed), Ingredient.of(INFERIUM_FARMLAND), null,
+                            null, 2400, CompatResultLists.RESULTS_LIST_BY_TYPE.get(type), null)
+                    .save(consumer.withConditions(new ModLoadedCondition("mysticalagriculture")).withConditions(new ModLoadedCondition("cloche")), ResourceLocation.fromNamespaceAndPath(Compat.MOD_ID, "cloche/mysticalagriculture/" + type + "_seed"));
+        }
+
+        for (String type : MysticalResources.TIER_2_SEEDS) {
+            Item seed = BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath(MysticalAgriculture.MOD_ID, type + "_seeds"));
+
+            ClocheRecipeProvider.ClocheRecipeBuilder(Ingredient.of(seed), Ingredient.of(CompatResultLists.PRUDENTIUM_FARMLAND), null,
+                            null, 2400, CompatResultLists.RESULTS_LIST_BY_TYPE.get(type), null)
+                    .save(consumer.withConditions(new ModLoadedCondition("mysticalagriculture")).withConditions(new ModLoadedCondition("cloche")), ResourceLocation.fromNamespaceAndPath(Compat.MOD_ID, "cloche/mysticalagriculture/" + type + "_seed"));
+        }
+
+        for (String type : MysticalResources.TIER_3_SEEDS) {
+            Item seed = BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath(MysticalAgriculture.MOD_ID, type + "_seeds"));
+
+            ClocheRecipeProvider.ClocheRecipeBuilder(Ingredient.of(seed), Ingredient.of(CompatResultLists.TERTIUM_FARMLAND), null,
+                            null, 2400, CompatResultLists.RESULTS_LIST_BY_TYPE.get(type), null)
+                    .save(consumer.withConditions(new ModLoadedCondition("mysticalagriculture")).withConditions(new ModLoadedCondition("cloche")), ResourceLocation.fromNamespaceAndPath(Compat.MOD_ID, "cloche/mysticalagriculture/" + type + "_seed"));
+        }
+
+        for (String type : MysticalResources.TIER_4_SEEDS) {
+            Item seed = BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath(MysticalAgriculture.MOD_ID, type + "_seeds"));
+
+            ClocheRecipeProvider.ClocheRecipeBuilder(Ingredient.of(seed), Ingredient.of(CompatResultLists.IMPERIUM_FARMLAND), null,
+                            null, 2400, CompatResultLists.RESULTS_LIST_BY_TYPE.get(type), null)
+                    .save(consumer.withConditions(new ModLoadedCondition("mysticalagriculture")).withConditions(new ModLoadedCondition("cloche")), ResourceLocation.fromNamespaceAndPath(Compat.MOD_ID, "cloche/mysticalagriculture/" + type + "_seed"));
+        }
+
+        for (String type : MysticalResources.TIER_5_SEEDS) {
+            Item seed = BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath(MysticalAgriculture.MOD_ID, type + "_seeds"));
+
+            ClocheRecipeProvider.ClocheRecipeBuilder(Ingredient.of(seed), Ingredient.of(CompatResultLists.SUPREMIUM_FARMLAND), null,
+                            null, 2400, CompatResultLists.RESULTS_LIST_BY_TYPE.get(type), null)
+                    .save(consumer.withConditions(new ModLoadedCondition("mysticalagriculture")).withConditions(new ModLoadedCondition("cloche")), ResourceLocation.fromNamespaceAndPath(Compat.MOD_ID, "cloche/mysticalagriculture/" + type + "_seed"));
+        }
+
+       for (String type : MysticalResources.TIER_6_SEEDS) {
+           Item seed = BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath(MysticalAgriculture.MOD_ID, type + "_seeds"));
+           Item crux = BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath(MysticalAgradditions.MOD_ID, type + "_crux"));
+
+           ClocheRecipeProvider.ClocheRecipeBuilder(Ingredient.of(seed), Ingredient.of(CompatResultLists.INSANIUM_FARMLAND), Ingredient.of(crux),
+                           null, 3000, CompatResultLists.RESULTS_LIST_BY_TYPE.get(type), null)
+                   .save(consumer.withConditions(new ModLoadedCondition("mysticalagradditions")).withConditions(new ModLoadedCondition("cloche")), ResourceLocation.fromNamespaceAndPath(Compat.MOD_ID, "cloche/mysticalagriculture/" + type + "_seed"));
+       }
+
+
 
         for (String color : ColorList.COLORS) {
 

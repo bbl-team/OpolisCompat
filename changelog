@@ -2,6 +2,10 @@ Changelog Opolis Compat
 
 //****UPDATE VERSION NUMBER****//
 
+5.2.0
+Deprecated world replace event
+Added support for Mystical Agradditions and Mystical Agriculture crops in the cloche
+
 5.1.4
 Added server side only check for caveopolis to colors world conversion
 Added bbl core color tags to mechanism pigment extractor

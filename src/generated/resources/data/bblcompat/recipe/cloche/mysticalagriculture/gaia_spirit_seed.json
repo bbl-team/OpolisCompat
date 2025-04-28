@@ -1,0 +1,45 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "mysticalagradditions"
+    },
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "cloche"
+    }
+  ],
+  "type": "cloche:cloche",
+  "catalyst": {
+    "item": "mysticalagradditions:gaia_spirit_crux"
+  },
+  "duration": 3000,
+  "results": [
+    {
+      "item": {
+        "count": 1,
+        "id": "mysticalagriculture:gaia_spirit_essence"
+      }
+    },
+    {
+      "chance": 0.15,
+      "item": {
+        "count": 1,
+        "id": "mysticalagriculture:gaia_spirit_seeds"
+      }
+    },
+    {
+      "chance": 0.05,
+      "item": {
+        "count": 1,
+        "id": "mysticalagriculture:mystical_fertilizer"
+      }
+    }
+  ],
+  "seed": {
+    "item": "mysticalagriculture:gaia_spirit_seeds"
+  },
+  "soil": {
+    "item": "mysticalagradditions:insanium_farmland"
+  }
+}

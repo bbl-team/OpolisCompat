@@ -70,16 +70,16 @@ dependencies {
     runtimeOnly "curse.maven:bbl-core-1135181:6295426"
 
     //BBL Colors
-    compileOnly "curse.maven:bbl-core-1218206:6295557"
-    runtimeOnly "curse.maven:bbl-core-1218206:6295557"
+    compileOnly "curse.maven:bbl-colors-1218206:6295557"
+    runtimeOnly "curse.maven:bbl-colors-1218206:6295557"
 
     //Caveopolis 5.6.2
     compileOnly "curse.maven:caveopolis-mod-639186:6242679"
     runtimeOnly "curse.maven:caveopolis-mod-639186:6242679"
 
     //BBL Cloche 1.1.0
-    compileOnly "curse.maven:bbl-cloche-1153960:6251079"
-    runtimeOnly "curse.maven:bbl-cloche-1153960:6251079"
+    compileOnly "curse.maven:bbl-cloche-1153960:6406605"
+    runtimeOnly "curse.maven:bbl-cloche-1153960:6406605"
 
     //Opolis Utilities
     compileOnly "curse.maven:opolis-utilities-649644:5728507"
@@ -105,9 +105,23 @@ dependencies {
     compileOnly "curse.maven:immersive-engineering-231951:5828000"
     runtimeOnly "curse.maven:immersive-engineering-231951:5828000"
 
+    //Mystical Agriculture
+    compileOnly "curse.maven:mystical-agriculture-246640:6373333"
+    runtimeOnly "curse.maven:mystical-agriculture-246640:6373333"
+
+    //Mystical Agradditions
+
+    compileOnly "curse.maven:mystical-agradditions-256247:6373339"
+    runtimeOnly "curse.maven:mystical-agradditions-256247:6373339"
+
+    //Cucumber
+    compileOnly "curse.maven:cucumber-272335:6373317"
+    runtimeOnly "curse.maven:cucumber-272335:6373317"
+
     //EMI
     compileOnly "curse.maven:emi-580555:5619579"
     //runtimeOnly "curse.maven:emi-580555:5619579"
+
 
 }
 
