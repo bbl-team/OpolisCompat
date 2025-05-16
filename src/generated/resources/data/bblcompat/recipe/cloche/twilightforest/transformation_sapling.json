@@ -1,0 +1,61 @@
+{
+  "neoforge:conditions": [
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "twilightforest"
+    },
+    {
+      "type": "neoforge:mod_loaded",
+      "modid": "cloche"
+    }
+  ],
+  "type": "cloche:cloche",
+  "catalyst": [],
+  "duration": 1200,
+  "results": [
+    {
+      "item": {
+        "count": 2,
+        "id": "twilightforest:transformation_log"
+      }
+    },
+    {
+      "chance": 0.2,
+      "item": {
+        "count": 1,
+        "id": "twilightforest:transformation_sapling"
+      }
+    },
+    {
+      "chance": 0.01,
+      "item": {
+        "count": 1,
+        "id": "twilightforest:transformation_log_core"
+      }
+    },
+    {
+      "chance": 0.1,
+      "item": {
+        "count": 1,
+        "id": "minecraft:stick"
+      }
+    },
+    {
+      "chance": 0.01,
+      "item": {
+        "count": 1,
+        "id": "twilightforest:mining_log_core"
+      }
+    }
+  ],
+  "seed": {
+    "item": "twilightforest:transformation_sapling"
+  },
+  "shears_result": {
+    "count": 1,
+    "id": "twilightforest:transformation_leaves"
+  },
+  "soil": {
+    "tag": "minecraft:dirt"
+  }
+}

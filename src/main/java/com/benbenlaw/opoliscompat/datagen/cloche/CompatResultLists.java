@@ -21,7 +21,6 @@ public class CompatResultLists {
     public static final Item IMPERIUM_FARMLAND = BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath(MysticalAgriculture.MOD_ID, "imperium_farmland"));
     public static final Item SUPREMIUM_FARMLAND = BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath(MysticalAgriculture.MOD_ID, "supremium_farmland"));
     public static final Item INSANIUM_FARMLAND = BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath(MysticalAgradditions.MOD_ID, "insanium_farmland"));
-
     public static final Item MYSTICAL_FERTILIZER = BuiltInRegistries.ITEM.get(ResourceLocation.fromNamespaceAndPath(MysticalAgriculture.MOD_ID, "mystical_fertilizer"));
 
 

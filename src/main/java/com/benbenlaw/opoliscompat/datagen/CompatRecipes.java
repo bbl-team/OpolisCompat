@@ -12,6 +12,7 @@ import com.benbenlaw.core.util.ColorList;
 import com.benbenlaw.opoliscompat.Compat;
 import com.benbenlaw.opoliscompat.datagen.cloche.CompatResultLists;
 import com.benbenlaw.opoliscompat.datagen.cloche.MysticalResources;
+import com.benbenlaw.opoliscompat.datagen.cloche.TwilightResultLists;
 import com.blakebr0.mysticalagradditions.MysticalAgradditions;
 import com.blakebr0.mysticalagriculture.MysticalAgriculture;
 import net.minecraft.core.HolderLookup;
@@ -27,8 +28,10 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.neoforged.neoforge.common.Tags;
 import net.neoforged.neoforge.common.conditions.ModLoadedCondition;
 import net.neoforged.neoforge.common.crafting.DataComponentIngredient;
+import twilightforest.init.TFBlocks;
 
 import java.util.concurrent.CompletableFuture;
 
@@ -72,6 +75,63 @@ public class CompatRecipes extends RecipeProvider {
 
     @Override
     protected void buildRecipes(RecipeOutput consumer) {
+
+        //Twilight Forest Cloche Recipes
+        ClocheRecipeProvider.ClocheRecipeBuilder(Ingredient.of(TFBlocks.TWILIGHT_OAK_SAPLING), Ingredient.of(ItemTags.DIRT), null,
+                        null, 1200, TwilightResultLists.TWILIGHT_OAK_SAPLING_RESULTS, TFBlocks.TWILIGHT_OAK_LEAVES.toStack())
+                .save(consumer.withConditions(new ModLoadedCondition("twilightforest")).withConditions(new ModLoadedCondition("cloche")), ResourceLocation.fromNamespaceAndPath(Compat.MOD_ID, "cloche/twilightforest/twilight_oak_sapling"));
+
+        ClocheRecipeProvider.ClocheRecipeBuilder(Ingredient.of(TFBlocks.CANOPY_SAPLING), Ingredient.of(ItemTags.DIRT), null,
+                        null, 1200, TwilightResultLists.CANOPY_SAPLING_RESULTS, TFBlocks.CANOPY_LEAVES.toStack())
+                .save(consumer.withConditions(new ModLoadedCondition("twilightforest")).withConditions(new ModLoadedCondition("cloche")), ResourceLocation.fromNamespaceAndPath(Compat.MOD_ID, "cloche/twilightforest/canopy_sapling"));
+
+        ClocheRecipeProvider.ClocheRecipeBuilder(Ingredient.of(TFBlocks.MANGROVE_SAPLING), Ingredient.of(ItemTags.DIRT), null,
+                        null, 1200, TwilightResultLists.MANGROVE_SAPLING_RESULTS, TFBlocks.MANGROVE_LEAVES.toStack())
+                .save(consumer.withConditions(new ModLoadedCondition("twilightforest")).withConditions(new ModLoadedCondition("cloche")), ResourceLocation.fromNamespaceAndPath(Compat.MOD_ID, "cloche/twilightforest/mangrove_sapling"));
+
+        ClocheRecipeProvider.ClocheRecipeBuilder(Ingredient.of(TFBlocks.DARKWOOD_SAPLING), Ingredient.of(ItemTags.DIRT), null,
+                        null, 1200, TwilightResultLists.DARKWOOD_SAPLING_RESULTS, TFBlocks.DARK_LEAVES.toStack())
+                .save(consumer.withConditions(new ModLoadedCondition("twilightforest")).withConditions(new ModLoadedCondition("cloche")), ResourceLocation.fromNamespaceAndPath(Compat.MOD_ID, "cloche/twilightforest/darkwood_sapling"));
+
+        ClocheRecipeProvider.ClocheRecipeBuilder(Ingredient.of(TFBlocks.TIME_SAPLING), Ingredient.of(ItemTags.DIRT), null,
+                        null, 1200, TwilightResultLists.TIME_SAPLING_RESULTS, TFBlocks.TIME_LEAVES.toStack())
+                .save(consumer.withConditions(new ModLoadedCondition("twilightforest")).withConditions(new ModLoadedCondition("cloche")), ResourceLocation.fromNamespaceAndPath(Compat.MOD_ID, "cloche/twilightforest/time_sapling"));
+
+        ClocheRecipeProvider.ClocheRecipeBuilder(Ingredient.of(TFBlocks.TRANSFORMATION_SAPLING), Ingredient.of(ItemTags.DIRT), null,
+                        null, 1200, TwilightResultLists.TRANSFORMATION_SAPLING_RESULTS, TFBlocks.TRANSFORMATION_LEAVES.toStack())
+                .save(consumer.withConditions(new ModLoadedCondition("twilightforest")).withConditions(new ModLoadedCondition("cloche")), ResourceLocation.fromNamespaceAndPath(Compat.MOD_ID, "cloche/twilightforest/transformation_sapling"));
+
+        ClocheRecipeProvider.ClocheRecipeBuilder(Ingredient.of(TFBlocks.MINING_SAPLING), Ingredient.of(ItemTags.DIRT), null,
+                        null, 1200, TwilightResultLists.MINERS_SAPLING_RESULTS, TFBlocks.MINING_LEAVES.toStack())
+                .save(consumer.withConditions(new ModLoadedCondition("twilightforest")).withConditions(new ModLoadedCondition("cloche")), ResourceLocation.fromNamespaceAndPath(Compat.MOD_ID, "cloche/twilightforest/mining_sapling"));
+
+        ClocheRecipeProvider.ClocheRecipeBuilder(Ingredient.of(TFBlocks.SORTING_SAPLING), Ingredient.of(ItemTags.DIRT), null,
+                        null, 1200, TwilightResultLists.SORTING_SAPLING_RESULTS, TFBlocks.SORTING_LEAVES.toStack())
+                .save(consumer.withConditions(new ModLoadedCondition("twilightforest")).withConditions(new ModLoadedCondition("cloche")), ResourceLocation.fromNamespaceAndPath(Compat.MOD_ID, "cloche/twilightforest/sorting_sapling"));
+
+        ClocheRecipeProvider.ClocheRecipeBuilder(Ingredient.of(TFBlocks.HOLLOW_OAK_SAPLING), Ingredient.of(ItemTags.DIRT), null,
+                        null, 1200, TwilightResultLists.ROBUST_OAK_SAPLING_RESULTS, TFBlocks.TWILIGHT_OAK_LEAVES.toStack())
+                .save(consumer.withConditions(new ModLoadedCondition("twilightforest")).withConditions(new ModLoadedCondition("cloche")), ResourceLocation.fromNamespaceAndPath(Compat.MOD_ID, "cloche/twilightforest/robust_oak_sapling"));
+
+        ClocheRecipeProvider.ClocheRecipeBuilder(Ingredient.of(TFBlocks.RAINBOW_OAK_SAPLING), Ingredient.of(ItemTags.DIRT), null,
+                        null, 1200, TwilightResultLists.RAINBOW_OAK_RESULTS, TFBlocks.RAINBOW_OAK_LEAVES.toStack())
+                .save(consumer.withConditions(new ModLoadedCondition("twilightforest")).withConditions(new ModLoadedCondition("cloche")), ResourceLocation.fromNamespaceAndPath(Compat.MOD_ID, "cloche/twilightforest/rainbow_oak_sapling"));
+
+        ClocheRecipeProvider.ClocheRecipeBuilder(Ingredient.of(TFBlocks.TORCHBERRY_PLANT), Ingredient.of(ItemTags.DIRT), null,
+                        null, 1200, TwilightResultLists.TORCHBERRY_RESULTS, null)
+                .save(consumer.withConditions(new ModLoadedCondition("twilightforest")).withConditions(new ModLoadedCondition("cloche")), ResourceLocation.fromNamespaceAndPath(Compat.MOD_ID, "cloche/twilightforest/torchberry_bush"));
+
+        createSimpleClocheTwilightForestRecipe(Ingredient.of(TFBlocks.MUSHGLOOM.get().asItem()), Ingredient.of(ItemTags.DIRT), 1200, "mushgloom", consumer);
+        createSimpleClocheTwilightForestRecipe(Ingredient.of(TFBlocks.MOSS_PATCH.get().asItem()), Ingredient.of(ItemTags.DIRT), 1200, "moss_patch", consumer);
+        createSimpleClocheTwilightForestRecipe(Ingredient.of(TFBlocks.MAYAPPLE.get().asItem()), Ingredient.of(ItemTags.DIRT), 1200, "mayapple", consumer);
+        createSimpleClocheTwilightForestRecipe(Ingredient.of(TFBlocks.CLOVER_PATCH.get().asItem()), Ingredient.of(ItemTags.DIRT), 1200, "clover_patch", consumer);
+        createSimpleClocheTwilightForestRecipe(Ingredient.of(TFBlocks.FIDDLEHEAD.get().asItem()), Ingredient.of(ItemTags.DIRT), 1200, "fiddlehead", consumer);
+        createSimpleClocheTwilightForestRecipe(Ingredient.of(TFBlocks.HUGE_LILY_PAD.get().asItem()), Ingredient.of(Items.WATER_BUCKET), 1200, "huge_lily_pad", consumer);
+        createSimpleClocheTwilightForestRecipe(Ingredient.of(TFBlocks.HUGE_WATER_LILY.get().asItem()), Ingredient.of(Items.WATER_BUCKET), 1200, "huge_water_lily", consumer);
+        createSimpleClocheTwilightForestRecipe(Ingredient.of(TFBlocks.THORN_ROSE.get().asItem()), Ingredient.of(ItemTags.DIRT), 1200, "thorn_rose", consumer);
+        createSimpleClocheTwilightForestRecipe(Ingredient.of(TFBlocks.GREEN_THORNS.get().asItem()), Ingredient.of(ItemTags.DIRT), 1200, "green_thorns", consumer);
+        createSimpleClocheTwilightForestRecipe(Ingredient.of(TFBlocks.BROWN_THORNS.get().asItem()), Ingredient.of(ItemTags.DIRT), 1200, "brown_thorns", consumer);
+
 
         //Mystical Cloche Recipes
         for (String type : MysticalResources.TIER_1_SEEDS) {
@@ -200,6 +260,17 @@ public class CompatRecipes extends RecipeProvider {
         ClocheRecipeProvider.ClocheRecipeBuilder(flowerColor, soil, null,
                         null, duration, SINGLE_ITEM_RESULTS, null)
                 .save(consumer.withConditions(new ModLoadedCondition("caveopolis")).withConditions(new ModLoadedCondition("cloche")), ResourceLocation.fromNamespaceAndPath(Compat.MOD_ID, "cloche/caveopolis/" + color + name));
+    }
+
+    private void createSimpleClocheTwilightForestRecipe(Ingredient seed, Ingredient soil, int duration, String name, RecipeOutput consumer) {
+
+        NonNullList<ChanceResult> SINGLE_ITEM_RESULTS = NonNullList.create();
+        SINGLE_ITEM_RESULTS.add(new ChanceResult(new ItemStack(seed.getItems()[0].getItem(), 1), 1.0f));
+
+
+        ClocheRecipeProvider.ClocheRecipeBuilder(seed, soil, null,
+                        null, duration, SINGLE_ITEM_RESULTS, null)
+                .save(consumer.withConditions(new ModLoadedCondition("twilightforest")).withConditions(new ModLoadedCondition("cloche")), ResourceLocation.fromNamespaceAndPath(Compat.MOD_ID, "cloche/twilightforest/" + name));
     }
 
     private static ItemStack itemWithColor(ItemStack item, String color) {
