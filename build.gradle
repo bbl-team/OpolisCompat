@@ -69,6 +69,18 @@ dependencies {
     compileOnly "curse.maven:bbl-core-1135181:6486837"
     runtimeOnly "curse.maven:bbl-core-1135181:6486837"
 
+    //GlitchCore
+    compileOnly "curse.maven:glitchcore-955399:5660740"
+    runtimeOnly "curse.maven:glitchcore-955399:5660740"
+
+    //TerraBlender
+    compileOnly "curse.maven:terrablender-neoforge-940057:6054947"
+    runtimeOnly "curse.maven:terrablender-neoforge-940057:6054947"
+
+    //Biomes O' Plenty
+    compileOnly "curse.maven:biomes-o-plenty-220318:6631072"
+    runtimeOnly "curse.maven:biomes-o-plenty-220318:6631072"
+
     //Twilight Forest
     compileOnly "curse.maven:the-twilight-forest-227639:6472889"
     runtimeOnly "curse.maven:the-twilight-forest-227639:6472889"
