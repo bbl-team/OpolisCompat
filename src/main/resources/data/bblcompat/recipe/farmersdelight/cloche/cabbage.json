@@ -14,7 +14,6 @@
   "duration": 1200,
   "results": [
     {
-      "chance": 0.2,
       "item": {
         "count": 1,
         "id": "farmersdelight:cabbage"

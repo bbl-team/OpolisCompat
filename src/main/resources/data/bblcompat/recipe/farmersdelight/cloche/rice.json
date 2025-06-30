@@ -18,6 +18,13 @@
       "count": 1,
       "id": "farmersdelight:rice_panicle"
     }
+  },
+  {
+    "chance": 0.2,
+    "item": {
+      "count": 1,
+      "id": "farmersdelight:rice"
+    }
   }
 ],
 "seed": {
