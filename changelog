@@ -4,6 +4,9 @@ Changelog Opolis Compat
 
 //Add Oh Biomes Yo Go Saplings and Flowers to the cloche
 
+5.3.3
+Fixed cloche recipes for mystical producing the wrong extra items is now fertilized_essence
+
 5.3.2
 Fixed some farmers delight crops not producing the correct outputs in the cloche
 
