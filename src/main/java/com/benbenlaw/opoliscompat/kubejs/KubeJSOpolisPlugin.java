@@ -2,10 +2,7 @@ package com.benbenlaw.opoliscompat.kubejs;
 
 import com.benbenlaw.opoliscompat.kubejs.cloche.ClocheRecipeJS;
 import com.benbenlaw.opoliscompat.kubejs.market.MarketRecipeJS;
-import com.benbenlaw.opoliscompat.kubejs.smelting.FuelRecipeJS;
-import com.benbenlaw.opoliscompat.kubejs.smelting.MeltingRecipeJS;
-import com.benbenlaw.opoliscompat.kubejs.smelting.MixingRecipeJS;
-import com.benbenlaw.opoliscompat.kubejs.smelting.SolidifierRecipeJS;
+import com.benbenlaw.opoliscompat.kubejs.smelting.*;
 import com.benbenlaw.opoliscompat.kubejs.strainers.MeshUpgradeRecipeJS;
 import com.benbenlaw.opoliscompat.kubejs.strainers.OutputUpgradeRecipeJS;
 import com.benbenlaw.opoliscompat.kubejs.strainers.StrainerRecipeJS;
@@ -42,6 +39,7 @@ public class KubeJSOpolisPlugin implements KubeJSPlugin {
         event.register(ResourceLocation.fromNamespaceAndPath("casting", "melting"), MeltingRecipeJS.SCHEMA);
         event.register(ResourceLocation.fromNamespaceAndPath("casting", "mixing"), MixingRecipeJS.SCHEMA);
         event.register(ResourceLocation.fromNamespaceAndPath("casting", "solidifier"), SolidifierRecipeJS.SCHEMA);
+        event.register(ResourceLocation.fromNamespaceAndPath("casting", "coolant"), CoolantRecipeJS.SCHEMA);
 
         //Market
         event.register(ResourceLocation.fromNamespaceAndPath("market", "market"), MarketRecipeJS.SCHEMA);

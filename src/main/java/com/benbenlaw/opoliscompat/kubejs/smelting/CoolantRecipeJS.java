@@ -7,10 +7,9 @@ import dev.latvian.mods.kubejs.recipe.component.NumberComponent;
 import dev.latvian.mods.kubejs.recipe.schema.RecipeSchema;
 import net.neoforged.neoforge.fluids.FluidStack;
 
-public interface FuelRecipeJS {
+public interface CoolantRecipeJS {
     RecipeKey<FluidStack> FLUID = FluidStackComponent.FLUID_STACK.inputKey("fluid");
-    RecipeKey<Integer> TEMP = NumberComponent.INT.key("temp", ComponentRole.OTHER);
     RecipeKey<Integer> DURATION = NumberComponent.INT.key("duration", ComponentRole.OTHER);
 
-    RecipeSchema SCHEMA = new RecipeSchema(FLUID, TEMP, DURATION);
+    RecipeSchema SCHEMA = new RecipeSchema(FLUID, DURATION);
 }

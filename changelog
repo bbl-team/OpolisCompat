@@ -4,6 +4,13 @@ Changelog Opolis Compat
 
 //Add Oh Biomes Yo Go Saplings and Flowers to the cloche
 
+5.3.4
+Update to latest Casting, Fixed errors in kubejs related to casting mixing recipes not matching in compat and casting
+Update fuel recipe to use the new casting one
+Added Coolant recipes for KubeJS
+    event.recipes.casting.coolant("187x minecraft:lava", 123)
+
+
 5.3.3
 Fixed cloche recipes for mystical producing the wrong extra items is now fertilized_essence
 
