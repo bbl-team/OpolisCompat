@@ -202,7 +202,7 @@ tasks.register('publishCurseForge', TaskPublishCurseForge) {
     mainFile.addRequirement("bbl-core")
     mainFile.releaseType = "release"
     mainFile.gameVersions.addAll("1.21", "1.21.1")
-    mainFile.addEnvironment()
+    mainFile.addEnvironment("Client", "Server")
 }
 
 tasks.getByName("modrinth").setGroup("modpublishing")
