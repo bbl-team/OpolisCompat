@@ -4,6 +4,10 @@ Changelog Opolis Compat
 
 //Add Oh Biomes Yo Go Saplings and Flowers to the cloche
 
+5.4.0
+Added support for kubejs for inworld recipes block integration recipe type
+Finally added cloche support for kubejs
+
 5.3.4
 Update to latest Casting, Fixed errors in kubejs related to casting mixing recipes not matching in compat and casting
 Update fuel recipe to use the new casting one

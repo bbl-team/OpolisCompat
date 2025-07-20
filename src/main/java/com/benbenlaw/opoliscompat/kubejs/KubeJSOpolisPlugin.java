@@ -1,6 +1,7 @@
 package com.benbenlaw.opoliscompat.kubejs;
 
 import com.benbenlaw.opoliscompat.kubejs.cloche.ClocheRecipeJS;
+import com.benbenlaw.opoliscompat.kubejs.inworldrecipes.BlockInteractionRecipeJS;
 import com.benbenlaw.opoliscompat.kubejs.market.MarketRecipeJS;
 import com.benbenlaw.opoliscompat.kubejs.smelting.*;
 import com.benbenlaw.opoliscompat.kubejs.strainers.MeshUpgradeRecipeJS;
@@ -10,6 +11,7 @@ import com.benbenlaw.opoliscompat.kubejs.utilities.*;
 import dev.latvian.mods.kubejs.event.EventGroup;
 import dev.latvian.mods.kubejs.event.EventGroupRegistry;
 import dev.latvian.mods.kubejs.plugin.KubeJSPlugin;
+import dev.latvian.mods.kubejs.recipe.schema.RecipeComponentFactoryRegistry;
 import dev.latvian.mods.kubejs.recipe.schema.RecipeSchemaRegistry;
 import net.minecraft.resources.ResourceLocation;
 
@@ -44,10 +46,19 @@ public class KubeJSOpolisPlugin implements KubeJSPlugin {
         //Market
         event.register(ResourceLocation.fromNamespaceAndPath("market", "market"), MarketRecipeJS.SCHEMA);
 
+        //In World Recipes
+        event.register(ResourceLocation.fromNamespaceAndPath("inworldrecipes", "block_interaction"), BlockInteractionRecipeJS.SCHEMA);
+
         //Cloche
-        //event.register(ResourceLocation.fromNamespaceAndPath("cloche", "cloche"), ClocheRecipeJS.SCHEMA);
+        event.register(ResourceLocation.fromNamespaceAndPath("cloche", "cloche"), ClocheRecipeJS.SCHEMA);
 
 
+    }
+
+    @Override
+    public void registerRecipeComponents(RecipeComponentFactoryRegistry registry) {
+        registry.register(ClickTypeComponent.INSTANCE);
+        registry.register(ChanceResultComponent.CHANCE_RESULT);
     }
 
     @Override

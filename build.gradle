@@ -69,6 +69,10 @@ dependencies {
     compileOnly "curse.maven:bbl-core-1135181:6732331"
     runtimeOnly "curse.maven:bbl-core-1135181:6732331"
 
+    //In World Recipes
+    compileOnly "curse.maven:in-world-recipes-1123257:6791261"
+    runtimeOnly "curse.maven:in-world-recipes-1123257:6791261"
+
     //GlitchCore
     compileOnly "curse.maven:glitchcore-955399:5660740"
     runtimeOnly "curse.maven:glitchcore-955399:5660740"
