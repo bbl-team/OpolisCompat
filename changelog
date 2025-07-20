@@ -4,6 +4,9 @@ Changelog Opolis Compat
 
 //Add Oh Biomes Yo Go Saplings and Flowers to the cloche
 
+5.4.1
+Added .outputBlockState() for in world recipes block integration recipe type
+
 5.4.0
 Added support for kubejs for inworld recipes block integration recipe type
 Finally added cloche support for kubejs

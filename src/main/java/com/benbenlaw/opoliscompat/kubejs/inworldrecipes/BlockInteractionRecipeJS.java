@@ -15,6 +15,8 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.block.state.BlockState;
 import net.neoforged.neoforge.common.crafting.SizedIngredient;
 
+import java.util.List;
+
 public interface BlockInteractionRecipeJS {
 
     RecipeKey<ClickType> CLICK_TYPE = ClickTypeComponent.INSTANCE.inputKey("click_type");
@@ -26,7 +28,8 @@ public interface BlockInteractionRecipeJS {
     RecipeKey<Boolean> IGNORE_BLOCK_STATE = BooleanComponent.BOOLEAN.inputKey("ignore_block_state");
 
     RecipeKey<NonNullList<ChanceResult>> RESULTS = ChanceResultComponent.CHANCE_RESULT.asNonNullList().inputKey("results").defaultOptional();
-    RecipeKey<BlockState> OUTPUT_BLOCK_STATE = BlockStateComponent.BLOCK.inputKey("output_block_state").defaultOptional();
+    RecipeKey<BlockState> OUTPUT_BLOCK_STATE = BlockStateComponent.BLOCK.inputKey("output_block_state")
+            .functionNames(List.of("output_block_state", "outputBlockState")).defaultOptional();
 
 
     RecipeSchema SCHEMA = new RecipeSchema(
