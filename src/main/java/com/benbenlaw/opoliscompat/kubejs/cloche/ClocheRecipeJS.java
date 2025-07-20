@@ -18,7 +18,8 @@ public interface ClocheRecipeJS {
     RecipeKey<List<ChanceResult>> OUTPUTS = ChanceResultComponent.CHANCE_RESULT.asList().inputKey("results");
     RecipeKey<String> DIMENSION =  StringComponent.NON_EMPTY.inputKey("dimension").defaultOptional();
     RecipeKey<Ingredient> CATALYST = IngredientComponent.INGREDIENT.inputKey("catalyst").defaultOptional();
-    RecipeKey<ItemStack> SHEARS_RESULT = ItemStackComponent.ITEM_STACK.inputKey("shears_result").defaultOptional();
+    RecipeKey<ItemStack> SHEARS_RESULT = ItemStackComponent.ITEM_STACK.inputKey("shears_result")
+            .functionNames(List.of("shears_result", "shearsResult")).defaultOptional();;
 
     RecipeSchema SCHEMA = new RecipeSchema(SEED, SOIL, DURATION, OUTPUTS, DIMENSION, CATALYST, SHEARS_RESULT);
 

@@ -4,6 +4,13 @@ Changelog Opolis Compat
 
 //Add Oh Biomes Yo Go Saplings and Flowers to the cloche
 
+5.4.2
+Added .shearsResult() for cloche recipe type
+Drastically improved chance results from
+    [{ item: { id: "minecraft:cobblestone", count: 2 }, chance: 0.75 }, { item: { id: "minecraft:stone", count: 2 }, chance: 0.75 }]
+to
+    [["2x minecraft:cobblestone", 0.75], ["2x minecraft:stone", 0.75]]
+
 5.4.1
 Added .outputBlockState() for in world recipes block integration recipe type
 

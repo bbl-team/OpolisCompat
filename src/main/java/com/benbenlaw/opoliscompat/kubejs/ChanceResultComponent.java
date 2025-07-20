@@ -55,9 +55,37 @@ public class ChanceResultComponent implements RecipeComponent<ChanceResult> {
             return cr;
         }
 
+        // === Handle array input ===
+        if (from instanceof dev.latvian.mods.rhino.NativeArray nativeArray) {
+            int length = Math.toIntExact(nativeArray.getLength());
+            if (length < 1) {
+                throw new IllegalArgumentException("ChanceResult array must have at least 1 element (item)");
+            }
+
+            Object itemObj = nativeArray.get(0);
+            ItemStack stack;
+
+            if (itemObj instanceof String itemStr) {
+                stack = parseCountedItemString(itemStr);
+            } else {
+                throw new IllegalArgumentException("First element in array must be a string like 'item' or '3x item'");
+            }
+
+            float chance = 1.0f;
+            if (length > 1) {
+                try {
+                    chance = Float.parseFloat(String.valueOf(nativeArray.get(1)));
+                } catch (NumberFormatException ignored) {}
+            }
+
+            return new ChanceResult(stack, chance);
+        }
+
+        // === Handle object input ===
         if (from instanceof dev.latvian.mods.rhino.NativeObject nativeObj) {
             Object itemObj = nativeObj.get("item");
             Object chanceObj = nativeObj.get("chance");
+            Object countAtTopLevel = nativeObj.get("count");
 
             if (itemObj == null) {
                 throw new IllegalArgumentException("ChanceResult missing 'item' field");
@@ -66,12 +94,13 @@ public class ChanceResultComponent implements RecipeComponent<ChanceResult> {
             ItemStack stack;
 
             if (itemObj instanceof String itemStr) {
-                var rl = ResourceLocation.parse(itemStr);
-                var item = BuiltInRegistries.ITEM.get(rl);
-                if (item == null) {
-                    throw new IllegalArgumentException("Invalid item ID: " + itemStr);
+                stack = parseCountedItemString(itemStr);
+                if (countAtTopLevel != null) {
+                    try {
+                        double d = Double.parseDouble(String.valueOf(countAtTopLevel));
+                        stack.setCount((int) d);
+                    } catch (NumberFormatException ignored) {}
                 }
-                stack = new ItemStack(item);
             } else if (itemObj instanceof dev.latvian.mods.rhino.NativeObject itemNativeObj) {
                 Object idObj = itemNativeObj.get("id");
                 Object countObj = itemNativeObj.get("count");
@@ -86,9 +115,7 @@ public class ChanceResultComponent implements RecipeComponent<ChanceResult> {
                     try {
                         double d = Double.parseDouble(String.valueOf(countObj));
                         count = (int) d;
-                        if (count < 1) count = 1;  // Clamp to at least 1
-                    } catch (NumberFormatException ignored) {
-                    }
+                    } catch (NumberFormatException ignored) {}
                 }
 
                 var rl = ResourceLocation.parse(idStr);
@@ -96,6 +123,7 @@ public class ChanceResultComponent implements RecipeComponent<ChanceResult> {
                 if (item == null) {
                     throw new IllegalArgumentException("Invalid item ID: " + idStr);
                 }
+
                 stack = new ItemStack(item, count);
             } else {
                 throw new IllegalArgumentException("Invalid 'item' field type: " + itemObj.getClass());
@@ -105,25 +133,45 @@ public class ChanceResultComponent implements RecipeComponent<ChanceResult> {
             if (chanceObj != null) {
                 try {
                     chance = Float.parseFloat(String.valueOf(chanceObj));
-                } catch (NumberFormatException ignored) {
-                }
+                } catch (NumberFormatException ignored) {}
             }
 
             return new ChanceResult(stack, chance);
         }
 
+        // === Handle simple string ===
         if (from instanceof String s) {
-            var rl = ResourceLocation.parse(s);
-            var item = BuiltInRegistries.ITEM.get(rl);
-            if (item == null) {
-                throw new IllegalArgumentException("Invalid item ID: " + s);
-            }
-            return new ChanceResult(new ItemStack(item), 1.0f);
+            ItemStack stack = parseCountedItemString(s);
+            return new ChanceResult(stack, 1.0f);
         }
 
         throw new IllegalArgumentException("Cannot convert object to ChanceResult: " + from);
     }
 
+    private ItemStack parseCountedItemString(String input) {
+        input = input.trim();
+
+        if (input.matches("^\\d+x\\s+.+$")) {
+            String[] parts = input.split("\\s+", 2);
+            int count = Integer.parseInt(parts[0].replace("x", ""));
+            String itemId = parts[1];
+
+            var rl = ResourceLocation.parse(itemId);
+            var item = BuiltInRegistries.ITEM.get(rl);
+            if (item == null) {
+                throw new IllegalArgumentException("Invalid item ID: " + itemId);
+            }
+
+            return new ItemStack(item, count);
+        } else {
+            var rl = ResourceLocation.parse(input);
+            var item = BuiltInRegistries.ITEM.get(rl);
+            if (item == null) {
+                throw new IllegalArgumentException("Invalid item ID: " + input);
+            }
+            return new ItemStack(item);
+        }
+    }
 
 }
 
