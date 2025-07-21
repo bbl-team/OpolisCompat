@@ -4,6 +4,9 @@ Changelog Opolis Compat
 
 //Add Oh Biomes Yo Go Saplings and Flowers to the cloche
 
+5.4.3
+Updated to latest cloche with fixed recipes, re ran data and fixed 319 cloche recipes from compat
+
 5.4.2
 Added .shearsResult() for cloche recipe type
 Drastically improved chance results from

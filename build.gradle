@@ -97,9 +97,9 @@ dependencies {
     compileOnly "curse.maven:caveopolis-mod-639186:6242679"
     runtimeOnly "curse.maven:caveopolis-mod-639186:6242679"
 
-    //BBL Cloche 1.3.0
-    compileOnly "curse.maven:bbl-cloche-1153960:6535049"
-    runtimeOnly "curse.maven:bbl-cloche-1153960:6535049"
+    //BBL Cloche 1.3.4
+    compileOnly "curse.maven:bbl-cloche-1153960:6794724"
+    runtimeOnly "curse.maven:bbl-cloche-1153960:6794724"
 
     //Opolis Utilities
     compileOnly "curse.maven:opolis-utilities-649644:5728507"
