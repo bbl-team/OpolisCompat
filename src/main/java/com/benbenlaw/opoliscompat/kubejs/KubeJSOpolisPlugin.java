@@ -1,6 +1,7 @@
 package com.benbenlaw.opoliscompat.kubejs;
 
 import com.benbenlaw.opoliscompat.kubejs.cloche.ClocheRecipeJS;
+import com.benbenlaw.opoliscompat.kubejs.cloche.DimensionalUpgradeRecipeJS;
 import com.benbenlaw.opoliscompat.kubejs.inworldrecipes.BlockInteractionRecipeJS;
 import com.benbenlaw.opoliscompat.kubejs.market.MarketRecipeJS;
 import com.benbenlaw.opoliscompat.kubejs.smelting.*;
@@ -28,7 +29,7 @@ public class KubeJSOpolisPlugin implements KubeJSPlugin {
         event.register(ResourceLocation.fromNamespaceAndPath("opolisutilities", "fluid_generator"), FluidGenRecipeJS.SCHEMA);
         event.register(ResourceLocation.fromNamespaceAndPath("opolisutilities", "resource_generator"), ResourceGenRecipeJS.SCHEMA);
         event.register(ResourceLocation.fromNamespaceAndPath("opolisutilities", "soaking_table"), ResourceGenRecipeJS.SCHEMA);
-        event.register(ResourceLocation.fromNamespaceAndPath("opolisutilities", "speed_upgrades"), SpeedUpgradesRecipeJS.SCHEMA);
+        event.register(ResourceLocation.fromNamespaceAndPath("opolisutilities", "speed_upgrades"), SpeedUpgradeRecipeJS.SCHEMA);
         event.register(ResourceLocation.fromNamespaceAndPath("opolisutilities", "summoning_block"), SummoningRecipeJS.SCHEMA);
 
         //Strainers
@@ -51,6 +52,9 @@ public class KubeJSOpolisPlugin implements KubeJSPlugin {
 
         //Cloche
         event.register(ResourceLocation.fromNamespaceAndPath("cloche", "cloche"), ClocheRecipeJS.SCHEMA);
+        event.register(ResourceLocation.fromNamespaceAndPath("cloche", "dimensional_upgrade"), DimensionalUpgradeRecipeJS.SCHEMA);
+        event.register(ResourceLocation.fromNamespaceAndPath("cloche", "speed_upgrade"), com.benbenlaw.opoliscompat.kubejs.cloche.SpeedUpgradeRecipeJS.SCHEMA);
+
 
 
     }

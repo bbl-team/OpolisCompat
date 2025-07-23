@@ -7,7 +7,7 @@ import dev.latvian.mods.kubejs.recipe.component.NumberComponent;
 import dev.latvian.mods.kubejs.recipe.schema.RecipeSchema;
 import net.minecraft.world.item.crafting.Ingredient;
 
-public interface SpeedUpgradesRecipeJS {
+public interface SpeedUpgradeRecipeJS {
     RecipeKey<Ingredient> INPUT = IngredientComponent.INGREDIENT.inputKey("input");
     RecipeKey<Integer> TICK_RATE = NumberComponent.INT.key("tickRate", ComponentRole.OTHER);
 

@@ -1,8 +1,12 @@
-Changelog Opolis Compat
-
-//****UPDATE VERSION NUMBER****//
+Changelog BBL Compat
 
 //Add Oh Biomes Yo Go Saplings and Flowers to the cloche
+
+4.4.4
+Updated changelog url
+Updated wiki
+Added Cloche Dimension Upgrades recipe JS for KubeJS
+Added Speed Upgrades recipe JS for KubeJS
 
 5.4.3
 Updated to latest cloche with fixed recipes, re ran data and fixed 319 cloche recipes from compat
