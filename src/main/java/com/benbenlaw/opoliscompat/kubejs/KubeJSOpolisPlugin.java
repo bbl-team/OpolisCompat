@@ -15,6 +15,7 @@ import dev.latvian.mods.kubejs.plugin.KubeJSPlugin;
 import dev.latvian.mods.kubejs.recipe.schema.RecipeComponentFactoryRegistry;
 import dev.latvian.mods.kubejs.recipe.schema.RecipeSchemaRegistry;
 import net.minecraft.resources.ResourceLocation;
+import net.neoforged.fml.ModList;
 
 public class KubeJSOpolisPlugin implements KubeJSPlugin {
 
@@ -61,7 +62,10 @@ public class KubeJSOpolisPlugin implements KubeJSPlugin {
 
     @Override
     public void registerRecipeComponents(RecipeComponentFactoryRegistry registry) {
-        registry.register(ClickTypeComponent.INSTANCE);
+
+        if (ModList.get().isLoaded("inworldrecipes")) {
+            registry.register(ClickTypeComponent.INSTANCE);
+        }
         registry.register(ChanceResultComponent.CHANCE_RESULT);
     }
 

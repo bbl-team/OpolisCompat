@@ -2,7 +2,10 @@ Changelog BBL Compat
 
 //Add Oh Biomes Yo Go Saplings and Flowers to the cloche
 
-4.4.4
+5.4.5
+Fixed crashes with In World Recipes inst installed, fixed version number
+
+5.4.4
 Updated changelog url
 Updated wiki
 Added Cloche Dimension Upgrades recipe JS for KubeJS

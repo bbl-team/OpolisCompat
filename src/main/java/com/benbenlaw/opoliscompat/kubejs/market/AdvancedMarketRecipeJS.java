@@ -13,6 +13,5 @@ public interface AdvancedMarketRecipeJS {
     RecipeKey<ItemStack> OUTPUT = ItemStackComponent.ITEM_STACK.outputKey("output");
     RecipeKey<Integer> VARIATION = NumberComponent.INT.key("variation", ComponentRole.OTHER);
 
-
     RecipeSchema SCHEMA = new RecipeSchema(VARIATION, OUTPUT, LICENSE, INPUT);
 }
