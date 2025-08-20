@@ -12,6 +12,7 @@ import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.ItemLike;
 
 public class MeshChanceResultComponent implements RecipeComponent<MeshChanceResult> {
 
@@ -65,9 +66,7 @@ public class MeshChanceResultComponent implements RecipeComponent<MeshChanceResu
             Ingredient mesh = Ingredient.EMPTY;
             if (length > 2) {
                 Object meshObj = nativeArray.get(2);
-                if (meshObj instanceof String meshStr) {
-                    mesh = Ingredient.of(BuiltInRegistries.ITEM.get(ResourceLocation.parse(meshStr)));
-                }
+                mesh = parseMeshObject(meshObj);
             }
 
             return new MeshChanceResult(new ChanceResult(stack, chance), mesh);
@@ -131,13 +130,7 @@ public class MeshChanceResultComponent implements RecipeComponent<MeshChanceResu
 
             Ingredient mesh = Ingredient.EMPTY;
             if (meshObj != null) {
-                if (meshObj instanceof String meshStr) {
-                    var meshItem = BuiltInRegistries.ITEM.get(ResourceLocation.parse(meshStr));
-                    if (meshItem != null) {
-                        mesh = Ingredient.of(meshItem);
-                    }
-                }
-                // You could extend this to allow arrays/objects for more complex mesh definitions
+                mesh = parseMeshObject(meshObj);
             }
 
             return new MeshChanceResult(new ChanceResult(stack, chance), mesh);
@@ -150,6 +143,43 @@ public class MeshChanceResultComponent implements RecipeComponent<MeshChanceResu
         }
 
         throw new IllegalArgumentException("Cannot convert object to MeshChanceResult: " + from);
+    }
+
+    private Ingredient parseMeshObject(Object meshObj) {
+        if (meshObj instanceof String meshStr) {
+            meshStr = meshStr.trim();
+            if (meshStr.startsWith("#")) {
+                // Tag form: "#namespace:tagname"
+                ResourceLocation tagId = ResourceLocation.parse(meshStr.substring(1));
+                return Ingredient.of(net.minecraft.tags.TagKey.create(
+                        net.minecraft.core.registries.Registries.ITEM,
+                        tagId
+                ));
+            } else {
+                // Item form
+                var item = BuiltInRegistries.ITEM.get(ResourceLocation.parse(meshStr));
+                if (item == null) {
+                    throw new IllegalArgumentException("Invalid mesh item ID: " + meshStr);
+                }
+                return Ingredient.of(item);
+            }
+        }
+        else if (meshObj instanceof dev.latvian.mods.rhino.NativeArray meshArray) {
+            var list = new java.util.ArrayList<Ingredient>();
+            for (Object o : meshArray) {
+                if (o instanceof String s) {
+                    list.add(parseMeshObject(s)); // recursion handles item/tag
+                }
+            }
+            if (!list.isEmpty()) {
+                // Flatten into one big Ingredient choice
+                return Ingredient.fromValues(
+                        list.stream().flatMap(i -> java.util.Arrays.stream(i.getItems()))
+                                .map(stack -> new Ingredient.ItemValue(stack))
+                );
+            }
+        }
+        return Ingredient.EMPTY;
     }
 
     private ItemStack parseCountedItemString(String input) {
