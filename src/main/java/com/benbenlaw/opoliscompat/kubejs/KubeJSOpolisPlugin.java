@@ -8,6 +8,7 @@ import com.benbenlaw.opoliscompat.kubejs.smelting.*;
 import com.benbenlaw.opoliscompat.kubejs.strainers.MeshUpgradeRecipeJS;
 import com.benbenlaw.opoliscompat.kubejs.strainers.OutputUpgradeRecipeJS;
 import com.benbenlaw.opoliscompat.kubejs.strainers.StrainerRecipeJS;
+import com.benbenlaw.opoliscompat.kubejs.strainers.UpdatedStrainerRecipeJS;
 import com.benbenlaw.opoliscompat.kubejs.utilities.*;
 import dev.latvian.mods.kubejs.event.EventGroup;
 import dev.latvian.mods.kubejs.event.EventGroupRegistry;
@@ -34,9 +35,22 @@ public class KubeJSOpolisPlugin implements KubeJSPlugin {
         event.register(ResourceLocation.fromNamespaceAndPath("opolisutilities", "summoning_block"), SummoningRecipeJS.SCHEMA);
 
         //Strainers
-        event.register(ResourceLocation.fromNamespaceAndPath("strainers", "strainer"), StrainerRecipeJS.SCHEMA);
-        event.register(ResourceLocation.fromNamespaceAndPath("strainers", "mesh_upgrade"), MeshUpgradeRecipeJS.SCHEMA);
-        event.register(ResourceLocation.fromNamespaceAndPath("strainers", "output_upgrade"), OutputUpgradeRecipeJS.SCHEMA);
+        if (ModList.get().isLoaded("strainers")) {
+
+            String version = ModList.get().getModFileById("strainers").versionString();
+
+            if (version.startsWith("5.")) {
+                System.out.println("Loading Strainers 5.x compatibility for OpolisCompat KubeJS plugin");
+                event.register(ResourceLocation.fromNamespaceAndPath("strainers", "strainer"), UpdatedStrainerRecipeJS.SCHEMA);
+
+            } else {
+                event.register(ResourceLocation.fromNamespaceAndPath("strainers", "strainer"), StrainerRecipeJS.SCHEMA);
+                event.register(ResourceLocation.fromNamespaceAndPath("strainers", "mesh_upgrade"), MeshUpgradeRecipeJS.SCHEMA);
+                event.register(ResourceLocation.fromNamespaceAndPath("strainers", "output_upgrade"), OutputUpgradeRecipeJS.SCHEMA);
+            }
+        }
+
+
 
         //Casting
         event.register(ResourceLocation.fromNamespaceAndPath("casting", "fuel"), FuelRecipeJS.SCHEMA);
@@ -57,8 +71,8 @@ public class KubeJSOpolisPlugin implements KubeJSPlugin {
         event.register(ResourceLocation.fromNamespaceAndPath("cloche", "speed_upgrade"), com.benbenlaw.opoliscompat.kubejs.cloche.SpeedUpgradeRecipeJS.SCHEMA);
 
 
-
     }
+
 
     @Override
     public void registerRecipeComponents(RecipeComponentFactoryRegistry registry) {
@@ -66,7 +80,14 @@ public class KubeJSOpolisPlugin implements KubeJSPlugin {
         if (ModList.get().isLoaded("inworldrecipes")) {
             registry.register(ClickTypeComponent.INSTANCE);
         }
+
+        if (ModList.get().isLoaded("strainers")) {
+            registry.register(MeshChanceResultComponent.MESH_CHANCE_RESULT);
+        }
+
         registry.register(ChanceResultComponent.CHANCE_RESULT);
+
+
     }
 
     @Override
