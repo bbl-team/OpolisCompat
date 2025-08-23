@@ -1,8 +1,10 @@
 package com.benbenlaw.opoliscompat.kubejs.inworldrecipes;
 
 import com.benbenlaw.core.recipe.ChanceResult;
+import com.benbenlaw.inworldrecipes.recipes.BlockTarget;
 import com.benbenlaw.inworldrecipes.util.ClickType;
 import com.benbenlaw.inworldrecipes.util.ClickTypeCodec;
+import com.benbenlaw.opoliscompat.kubejs.BlockTargetComponent;
 import com.benbenlaw.opoliscompat.kubejs.ChanceResultComponent;
 import com.benbenlaw.opoliscompat.kubejs.ClickTypeComponent;
 import dev.latvian.mods.kubejs.recipe.RecipeKey;
@@ -20,7 +22,7 @@ import java.util.List;
 public interface BlockInteractionRecipeJS {
 
     RecipeKey<ClickType> CLICK_TYPE = ClickTypeComponent.INSTANCE.inputKey("click_type");
-    RecipeKey<BlockState> TARGET_BLOCK_STATE = BlockStateComponent.BLOCK.inputKey("target_block_state");
+    RecipeKey<BlockTarget> TARGET_BLOCK_STATE = BlockTargetComponent.INSTANCE.inputKey("target_block_state");
     RecipeKey<SizedIngredient> HELD_ITEM = SizedIngredientComponent.FLAT.inputKey("held_item");
     RecipeKey<Boolean> DAMAGE_HELD_ITEM = BooleanComponent.BOOLEAN.inputKey("damage_held_item");
     RecipeKey<Boolean> CONSUME_HELD_ITEM = BooleanComponent.BOOLEAN.inputKey("consume_held_item");

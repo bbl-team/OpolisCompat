@@ -79,6 +79,7 @@ public class KubeJSOpolisPlugin implements KubeJSPlugin {
 
         if (ModList.get().isLoaded("inworldrecipes")) {
             registry.register(ClickTypeComponent.INSTANCE);
+            registry.register(BlockTargetComponent.INSTANCE);
         }
 
         if (ModList.get().isLoaded("strainers")) {

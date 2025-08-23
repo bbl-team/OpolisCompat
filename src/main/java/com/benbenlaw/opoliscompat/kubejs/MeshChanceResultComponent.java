@@ -6,13 +6,12 @@ import com.mojang.serialization.Codec;
 import dev.latvian.mods.kubejs.recipe.KubeRecipe;
 import dev.latvian.mods.kubejs.recipe.component.RecipeComponent;
 import dev.latvian.mods.rhino.Context;
+import dev.latvian.mods.rhino.NativeObject;
 import dev.latvian.mods.rhino.type.TypeInfo;
-import net.minecraft.core.NonNullList;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.level.ItemLike;
 
 public class MeshChanceResultComponent implements RecipeComponent<MeshChanceResult> {
 
@@ -28,110 +27,50 @@ public class MeshChanceResultComponent implements RecipeComponent<MeshChanceResu
         return TypeInfo.OBJECT;
     }
 
-    public RecipeComponent<NonNullList<MeshChanceResult>> asNonNullList() {
-        return new NonNullListMeshChanceResultComponent(this);
-    }
-
     @Override
     public MeshChanceResult wrap(Context cx, KubeRecipe recipe, Object from) {
-        if (from instanceof MeshChanceResult mcr) {
-            return mcr;
-        }
+        if (from instanceof MeshChanceResult mcr) return mcr;
 
-        // === Handle array input ===
-        if (from instanceof dev.latvian.mods.rhino.NativeArray nativeArray) {
-            int length = Math.toIntExact(nativeArray.getLength());
-            if (length < 1) {
+        if (from instanceof dev.latvian.mods.rhino.NativeArray arr) {
+            if (arr.getLength() < 1) {
                 throw new IllegalArgumentException("MeshChanceResult array must have at least 1 element (item)");
             }
 
-            // item
-            Object itemObj = nativeArray.get(0);
-            ItemStack stack;
-            if (itemObj instanceof String itemStr) {
-                stack = parseCountedItemString(itemStr);
-            } else {
-                throw new IllegalArgumentException("First element must be a string like 'item' or '3x item'");
-            }
-
-            // chance
-            float chance = 1.0f;
-            if (length > 1) {
-                try {
-                    chance = Float.parseFloat(String.valueOf(nativeArray.get(1)));
-                } catch (NumberFormatException ignored) {}
-            }
-
-            // mesh
-            Ingredient mesh = Ingredient.EMPTY;
-            if (length > 2) {
-                Object meshObj = nativeArray.get(2);
-                mesh = parseMeshObject(meshObj);
-            }
+            ItemStack stack = parseCountedItemString(String.valueOf(arr.get(0)));
+            float chance = arr.getLength() > 1 ? Float.parseFloat(String.valueOf(arr.get(1))) : 1.0f;
+            Ingredient mesh = arr.getLength() > 2 ? parseMeshObject(arr.get(2)) : Ingredient.EMPTY;
 
             return new MeshChanceResult(new ChanceResult(stack, chance), mesh);
         }
 
-        // === Handle object input ===
-        if (from instanceof dev.latvian.mods.rhino.NativeObject nativeObj) {
-            Object itemObj = nativeObj.get("item");
-            Object chanceObj = nativeObj.get("chance");
-            Object countAtTopLevel = nativeObj.get("count");
-            Object meshObj = nativeObj.get("mesh");
+        if (from instanceof NativeObject obj) {
+            Object itemObj = obj.get("item");
+            Object chanceObj = obj.get("chance");
+            Object countAtTopLevel = obj.get("count");
+            Object meshObj = obj.get("mesh");
 
             if (itemObj == null) {
                 throw new IllegalArgumentException("MeshChanceResult missing 'item' field");
             }
 
             ItemStack stack;
-
             if (itemObj instanceof String itemStr) {
                 stack = parseCountedItemString(itemStr);
                 if (countAtTopLevel != null) {
-                    try {
-                        double d = Double.parseDouble(String.valueOf(countAtTopLevel));
-                        stack.setCount((int) d);
-                    } catch (NumberFormatException ignored) {}
+                    stack.setCount((int) Double.parseDouble(String.valueOf(countAtTopLevel)));
                 }
             } else if (itemObj instanceof dev.latvian.mods.rhino.NativeObject itemNativeObj) {
-                Object idObj = itemNativeObj.get("id");
-                Object countObj = itemNativeObj.get("count");
-
-                if (idObj == null) {
-                    throw new IllegalArgumentException("MeshChanceResult item missing 'id' field");
-                }
-
-                String idStr = String.valueOf(idObj);
-                int count = 1;
-                if (countObj != null) {
-                    try {
-                        double d = Double.parseDouble(String.valueOf(countObj));
-                        count = (int) d;
-                    } catch (NumberFormatException ignored) {}
-                }
-
-                var rl = ResourceLocation.parse(idStr);
-                var item = BuiltInRegistries.ITEM.get(rl);
-                if (item == null) {
-                    throw new IllegalArgumentException("Invalid item ID: " + idStr);
-                }
-
+                String idStr = String.valueOf(itemNativeObj.get("id"));
+                int count = itemNativeObj.get("count") != null ? (int) Double.parseDouble(String.valueOf(itemNativeObj.get("count"))) : 1;
+                var item = BuiltInRegistries.ITEM.get(ResourceLocation.parse(idStr));
+                if (item == null) throw new IllegalArgumentException("Invalid item ID: " + idStr);
                 stack = new ItemStack(item, count);
             } else {
                 throw new IllegalArgumentException("Invalid 'item' field type: " + itemObj.getClass());
             }
 
-            float chance = 1.0f;
-            if (chanceObj != null) {
-                try {
-                    chance = Float.parseFloat(String.valueOf(chanceObj));
-                } catch (NumberFormatException ignored) {}
-            }
-
-            Ingredient mesh = Ingredient.EMPTY;
-            if (meshObj != null) {
-                mesh = parseMeshObject(meshObj);
-            }
+            float chance = chanceObj != null ? Float.parseFloat(String.valueOf(chanceObj)) : 1.0f;
+            Ingredient mesh = meshObj != null ? parseMeshObject(meshObj) : Ingredient.EMPTY;
 
             return new MeshChanceResult(new ChanceResult(stack, chance), mesh);
         }
@@ -145,66 +84,44 @@ public class MeshChanceResultComponent implements RecipeComponent<MeshChanceResu
         throw new IllegalArgumentException("Cannot convert object to MeshChanceResult: " + from);
     }
 
-    private Ingredient parseMeshObject(Object meshObj) {
-        if (meshObj instanceof String meshStr) {
-            meshStr = meshStr.trim();
-            if (meshStr.startsWith("#")) {
-                // Tag form: "#namespace:tagname"
-                ResourceLocation tagId = ResourceLocation.parse(meshStr.substring(1));
-                return Ingredient.of(net.minecraft.tags.TagKey.create(
-                        net.minecraft.core.registries.Registries.ITEM,
-                        tagId
-                ));
-            } else {
-                // Item form
-                var item = BuiltInRegistries.ITEM.get(ResourceLocation.parse(meshStr));
-                if (item == null) {
-                    throw new IllegalArgumentException("Invalid mesh item ID: " + meshStr);
-                }
-                return Ingredient.of(item);
-            }
-        }
-        else if (meshObj instanceof dev.latvian.mods.rhino.NativeArray meshArray) {
-            var list = new java.util.ArrayList<Ingredient>();
-            for (Object o : meshArray) {
-                if (o instanceof String s) {
-                    list.add(parseMeshObject(s)); // recursion handles item/tag
-                }
-            }
-            if (!list.isEmpty()) {
-                // Flatten into one big Ingredient choice
-                return Ingredient.fromValues(
-                        list.stream().flatMap(i -> java.util.Arrays.stream(i.getItems()))
-                                .map(stack -> new Ingredient.ItemValue(stack))
-                );
-            }
-        }
-        return Ingredient.EMPTY;
-    }
-
     private ItemStack parseCountedItemString(String input) {
         input = input.trim();
-
         if (input.matches("^\\d+x\\s+.+$")) {
             String[] parts = input.split("\\s+", 2);
             int count = Integer.parseInt(parts[0].replace("x", ""));
             String itemId = parts[1];
-
-            var rl = ResourceLocation.parse(itemId);
-            var item = BuiltInRegistries.ITEM.get(rl);
-            if (item == null) {
-                throw new IllegalArgumentException("Invalid item ID: " + itemId);
-            }
-
+            var item = BuiltInRegistries.ITEM.get(ResourceLocation.parse(itemId));
+            if (item == null) throw new IllegalArgumentException("Invalid item ID: " + itemId);
             return new ItemStack(item, count);
         } else {
-            var rl = ResourceLocation.parse(input);
-            var item = BuiltInRegistries.ITEM.get(rl);
-            if (item == null) {
-                throw new IllegalArgumentException("Invalid item ID: " + input);
-            }
+            var item = BuiltInRegistries.ITEM.get(ResourceLocation.parse(input));
+            if (item == null) throw new IllegalArgumentException("Invalid item ID: " + input);
             return new ItemStack(item);
         }
     }
 
+    private Ingredient parseMeshObject(Object meshObj) {
+        if (meshObj instanceof String meshStr) {
+            meshStr = meshStr.trim();
+            if (meshStr.startsWith("#")) {
+                return Ingredient.of(net.minecraft.tags.TagKey.create(
+                        net.minecraft.core.registries.Registries.ITEM,
+                        ResourceLocation.parse(meshStr.substring(1))
+                ));
+            } else {
+                var item = BuiltInRegistries.ITEM.get(ResourceLocation.parse(meshStr));
+                if (item == null) throw new IllegalArgumentException("Invalid mesh item: " + meshStr);
+                return Ingredient.of(item);
+            }
+        }
+        else if (meshObj instanceof dev.latvian.mods.rhino.NativeArray arr) {
+            var ingredients = new java.util.ArrayList<Ingredient>();
+            for (Object o : arr) {
+                if (o instanceof String s) ingredients.add(parseMeshObject(s));
+            }
+            var stacks = ingredients.stream().flatMap(i -> java.util.Arrays.stream(i.getItems())).toArray(ItemStack[]::new);
+            return Ingredient.of(stacks);
+        }
+        return Ingredient.EMPTY;
+    }
 }

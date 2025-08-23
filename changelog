@@ -2,6 +2,9 @@ Changelog BBL Compat
 
 //Add Oh Biomes Yo Go Saplings and Flowers to the cloche
 
+5.4.8
+Updated to new In World Recipe Block Integration recipe using BlockTarget
+
 5.4.7
 Improved new strainers compat
 
