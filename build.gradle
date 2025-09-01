@@ -70,8 +70,8 @@ dependencies {
     runtimeOnly "curse.maven:bbl-core-1135181:6732331"
 
     //BBL Strainers
-    compileOnly "curse.maven:opolis-strainers-882351:6904218"
-    runtimeOnly "curse.maven:opolis-strainers-882351:6904218"
+    compileOnly "curse.maven:opolis-strainers-882351:6951682"
+    runtimeOnly "curse.maven:opolis-strainers-882351:6951682"
 
     //In World Recipes
     compileOnly "curse.maven:in-world-recipes-1123257:6918301"

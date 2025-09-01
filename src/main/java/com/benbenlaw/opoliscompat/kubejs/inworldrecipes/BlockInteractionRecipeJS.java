@@ -27,8 +27,8 @@ public interface BlockInteractionRecipeJS {
     RecipeKey<Boolean> DAMAGE_HELD_ITEM = BooleanComponent.BOOLEAN.inputKey("damage_held_item");
     RecipeKey<Boolean> CONSUME_HELD_ITEM = BooleanComponent.BOOLEAN.inputKey("consume_held_item");
     RecipeKey<Boolean> POP_ITEMS = BooleanComponent.BOOLEAN.inputKey("pop_items");
-    RecipeKey<Boolean> IGNORE_BLOCK_STATE = BooleanComponent.BOOLEAN.inputKey("ignore_block_state");
 
+    RecipeKey<Boolean> IGNORE_BLOCK_STATE = BooleanComponent.BOOLEAN.inputKey("ignore_block_state").defaultOptional();
     RecipeKey<NonNullList<ChanceResult>> RESULTS = ChanceResultComponent.CHANCE_RESULT.asNonNullList().inputKey("results").defaultOptional();
     RecipeKey<BlockState> OUTPUT_BLOCK_STATE = BlockStateComponent.BLOCK.inputKey("output_block_state")
             .functionNames(List.of("output_block_state", "outputBlockState")).defaultOptional();
